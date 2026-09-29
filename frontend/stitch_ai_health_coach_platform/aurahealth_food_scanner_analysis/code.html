@@ -1,0 +1,462 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BealthAI - AI Food Vision Scanner &amp; Nutrition Analysis</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface": "#faf8ff",
+            "surface-container-lowest": "#ffffff",
+            "primary": "#005c55",
+            "inverse-surface": "#283044",
+            "primary-fixed": "#9cf2e8",
+            "on-secondary-fixed-variant": "#783200",
+            "surface-container-highest": "#dae2fd",
+            "on-tertiary-fixed": "#001d31",
+            "surface-bright": "#faf8ff",
+            "surface-tint": "#006a63",
+            "surface-variant": "#dae2fd",
+            "surface-container-low": "#f2f3ff",
+            "error-container": "#ffdad6",
+            "surface-container": "#eaedff",
+            "primary-container": "#0f766e",
+            "on-secondary": "#ffffff",
+            "error": "#ba1a1a",
+            "outline": "#6e7977",
+            "on-secondary-fixed": "#341100",
+            "inverse-primary": "#80d5cb",
+            "on-error": "#ffffff",
+            "on-tertiary-container": "#dbecff",
+            "on-tertiary": "#ffffff",
+            "on-background": "#131b2e",
+            "surface-dim": "#d2d9f4",
+            "outline-variant": "#bdc9c6",
+            "on-primary-fixed-variant": "#00504a",
+            "secondary": "#9d4300",
+            "on-secondary-container": "#5c2400",
+            "surface-container-high": "#e2e7ff",
+            "secondary-fixed-dim": "#ffb690",
+            "on-tertiary-fixed-variant": "#004b73",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#a3faef",
+            "tertiary-container": "#006fa8",
+            "tertiary-fixed": "#cce5ff",
+            "tertiary-fixed-dim": "#93ccff",
+            "on-error-container": "#93000a",
+            "tertiary": "#005683",
+            "secondary-fixed": "#ffdbca",
+            "on-surface-variant": "#3e4947",
+            "secondary-container": "#fd761a",
+            "on-surface": "#131b2e",
+            "primary-fixed-dim": "#80d5cb",
+            "inverse-on-surface": "#eef0ff",
+            "on-primary-fixed": "#00201d",
+            "background": "#faf8ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "gutter-tablet": "1.5rem",
+            "gutter": "1rem",
+            "space-md": "1rem",
+            "margin-desktop": "3rem",
+            "margin-tablet": "2rem",
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "gutter-desktop": "2rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "display": ["Plus Jakarta Sans"],
+            "title-metric-mobile": ["Plus Jakarta Sans"],
+            "title-metric": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "display-mobile": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "label-caps": ["Inter"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "body-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "display": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "title-metric-mobile": ["26px", {"lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "title-metric": ["32px", {"lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "display-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+            "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["15px", {"lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400"}],
+            "label-caps": ["11px", {"lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    @keyframes scanLaser {
+      0% { top: 6%; opacity: 0.2; }
+      50% { opacity: 0.9; }
+      100% { top: 92%; opacity: 0.2; }
+    }
+    .animate-laser {
+      animation: scanLaser 2.4s ease-in-out infinite alternate;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex justify-center selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Viewport Shell (Max-w-lg) -->
+<main class="w-full max-w-lg bg-surface min-h-screen relative flex flex-col shadow-2xl overflow-x-hidden pb-24">
+<!-- Top Navigation Header -->
+<header class="sticky top-0 left-0 w-full z-40 flex justify-between items-center px-gutter h-16 bg-surface/85 backdrop-blur-md">
+<a aria-label="Go Back" href="{{DATA:SCREEN:SCREEN_12}}" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150"><span class="material-symbols-outlined text-[24px]">arrow_back</span></a>
+<div class="flex flex-col items-center text-center">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight flex items-center gap-1.5">
+<span class="">Food Vision AI</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-primary-fixed text-on-primary-fixed uppercase tracking-wider">v2.4</span>
+</span>
+<span class="font-label-md text-[11px] text-primary font-medium tracking-wide">Multi-Spectral Instant Calorie Scan</span>
+</div>
+<button aria-label="Toggle Flash" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150 relative" id="flash-toggle" type="button">
+<span class="material-symbols-outlined text-[22px]">flash_on</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface"></span>
+</button>
+</header>
+<!-- Scanner Camera Viewfinder Section -->
+<section class="px-gutter pt-space-xs pb-space-sm flex flex-col gap-space-sm">
+<!-- Viewfinder Stage -->
+<div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-outline-variant/30 bg-inverse-surface group">
+<!-- Live Camera Feed Simulation Background -->
+<img class="w-full h-full object-cover select-none scale-105 transition-transform duration-700 ease-out" data-alt="A vibrant overhead gourmet Mediterranean chicken grain bowl with grilled seasoned chicken breast, fluffy herb brown rice, colorful roasted zucchini, vibrant cherry tomatoes, and light creamy tahini drizzle on a warm rustic ceramic plate. High-definition natural studio kitchen lighting with crisp textures and fresh culinary colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrXWezflh_w_DhPWTW6mJN17SV5ydjfZU4Z-AzrG-QAUTkz0Hq59Yw-ly2bWnsVh5Nz3pQE4tb4L8mv7bzXoxqw3SvnMcyhwgsruuh5s9Im4kNFNeiRxBy3fZr1oiZbyfjVvWPFTskxZe_lteXk_Bw_jjzHBTe88FMIKtdBaaTCSAXW89q-vL8VZCAlWfJ_V6h167TaJY-FCSp6rFeqFiRNU9r-hbBXhkRiFYZUu4byL8-SDRfSfcbWQ">
+<!-- Subtle Gradient Darkening Vignette -->
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 via-transparent to-on-surface/40 pointer-events-none"></div>
+<!-- Targeting Reticle / Corner Brackets -->
+<div class="absolute inset-4 rounded-2xl pointer-events-none">
+<!-- Top Left -->
+<div class="absolute top-0 left-0 w-8 h-8 border-t-[3px] border-l-[3px] border-primary-fixed rounded-tl-xl shadow-sm"></div>
+<!-- Top Right -->
+<div class="absolute top-0 right-0 w-8 h-8 border-t-[3px] border-r-[3px] border-primary-fixed rounded-tr-xl shadow-sm"></div>
+<!-- Bottom Left -->
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-[3px] border-l-[3px] border-primary-fixed rounded-bl-xl shadow-sm"></div>
+<!-- Bottom Right -->
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-[3px] border-r-[3px] border-primary-fixed rounded-br-xl shadow-sm"></div>
+</div>
+<!-- Laser Scanner Bar Motion -->
+<div class="absolute inset-x-5 h-[2px] bg-gradient-to-r from-transparent via-primary-fixed to-transparent animate-laser shadow-[0_0_12px_#9cf2e8] pointer-events-none"></div>
+<!-- Neural Status Badge -->
+<div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-inverse-surface/80 backdrop-blur-md border border-primary-fixed/30 text-primary-fixed text-[11px] font-label-md font-semibold tracking-wider shadow-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-fixed animate-ping"></span>
+<span class="">✦ Neural Food Vision 2.4</span>
+</div>
+<!-- Real-time Recognition Tag Overlays -->
+<div class="absolute top-1/3 left-12 px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md border border-outline-variant/30 text-on-surface text-[11px] font-semibold flex items-center gap-1 shadow-md">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="">Chicken Breast (150g)</span>
+</div>
+<div class="absolute bottom-8 right-8 px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md border border-outline-variant/30 text-on-surface text-[11px] font-semibold flex items-center gap-1 shadow-md">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="">Herb Brown Rice (180g)</span>
+</div>
+<!-- Camera Focus Reticle Center Indicator -->
+<div class="absolute inset-0 m-auto w-12 h-12 rounded-full border border-white/40 flex items-center justify-center pointer-events-none">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-fixed shadow-[0_0_8px_#9cf2e8]"></div>
+</div>
+<!-- Viewfinder Footer Quick Actions -->
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-auto">
+<button class="px-2.5 py-1 rounded-full bg-on-surface/70 backdrop-blur-sm text-surface-container-lowest text-[11px] font-medium flex items-center gap-1 hover:bg-on-surface/90 transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">center_focus_strong</span>
+<span class="">Autofocus Lock</span>
+</button>
+<span class="px-2 py-0.5 rounded-md bg-on-surface/70 backdrop-blur-sm text-surface-container-lowest text-[10px] font-mono tracking-tight">1080p · 60fps</span>
+</div>
+</div>
+<!-- Mode Selector Pills -->
+<nav aria-label="Input Mode Selector" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<!-- Active Camera Scan Mode -->
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md font-semibold flex items-center gap-1.5 shadow-sm active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+<span class="">Camera Scan</span>
+</button>
+<!-- Upload Photo -->
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md font-medium flex items-center gap-1.5 hover:bg-surface-container-high active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>
+<span class="">Upload Photo</span>
+</button>
+<!-- Barcode -->
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md font-medium flex items-center gap-1.5 hover:bg-surface-container-high active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">barcode_scanner</span>
+<span class="">Barcode</span>
+</button>
+<!-- Text Description -->
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md font-medium flex items-center gap-1.5 hover:bg-surface-container-high active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span class="">Text Description</span>
+</button>
+</nav>
+</section>
+<!-- Live Analysis Result Sliding Card (Sheet Style) -->
+<section class="px-gutter flex-1 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-3xl p-5 border border-primary/10 shadow-[0_4px_24px_-2px_rgba(15,118,110,0.06),0_2px_8px_-1px_rgba(15,23,42,0.03)] flex flex-col gap-4 relative">
+<!-- Drag Pill Affordance -->
+<div class="w-10 h-1 bg-outline-variant/40 rounded-full mx-auto -mt-1 mb-1"></div>
+<!-- Result Card Header & Confidence Badges -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-label-caps font-bold bg-primary-fixed/60 text-primary">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+<span class="">AI Confidence: High (94%)</span>
+</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-label-md text-on-surface-variant bg-surface-container">
+                Estimated result
+              </span>
+</div>
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Plate Vol: 455g</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight mt-0.5 leading-snug">
+            Mediterranean Grilled Chicken Rice Bowl
+          </h2>
+</div>
+<!-- Nutritional Breakdown Grid (Bento Style) -->
+<div class="grid grid-cols-4 gap-2.5 pt-1">
+<!-- Big Calorie Hero Cell -->
+<div class="col-span-4 bg-gradient-to-r from-surface-container-low to-surface-bright p-4 rounded-2xl border border-outline-variant/20 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Total Energy Density</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-display-mobile text-display-mobile font-bold text-on-surface leading-none">620</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">kcal</span>
+</div>
+</div>
+<!-- Calorie Gauge Ring Indicator -->
+<div class="flex items-center gap-2 text-right">
+<div class="flex flex-col text-right">
+<span class="font-label-md text-[12px] font-semibold text-primary">28% daily target</span>
+<span class="text-[11px] text-outline">Deficit target: 2,200</span>
+</div>
+<div class="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center border-2 border-primary text-primary">
+<span class="material-symbols-outlined text-[20px]">local_fire_department</span>
+</div>
+</div>
+</div>
+<!-- Protein Sub-card -->
+<div class="bg-surface-container-low rounded-2xl p-3 border border-outline-variant/15 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-outline uppercase font-bold">Protein</span>
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="mt-2">
+<span class="font-title-metric-mobile text-[19px] font-bold text-on-surface leading-tight">38</span>
+<span class="font-label-md text-[11px] font-semibold text-outline">g</span>
+</div>
+<div class="w-full h-1.5 bg-outline-variant/30 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<!-- Carbs Sub-card -->
+<div class="bg-surface-container-low rounded-2xl p-3 border border-outline-variant/15 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-outline uppercase font-bold">Carbs</span>
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+</div>
+<div class="mt-2">
+<span class="font-title-metric-mobile text-[19px] font-bold text-on-surface leading-tight">72</span>
+<span class="font-label-md text-[11px] font-semibold text-outline">g</span>
+</div>
+<div class="w-full h-1.5 bg-outline-variant/30 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full" style="width: 62%"></div>
+</div>
+</div>
+<!-- Fat Sub-card -->
+<div class="bg-surface-container-low rounded-2xl p-3 border border-outline-variant/15 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-outline uppercase font-bold">Fat</span>
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+</div>
+<div class="mt-2">
+<span class="font-title-metric-mobile text-[19px] font-bold text-on-surface leading-tight">18</span>
+<span class="font-label-md text-[11px] font-semibold text-outline">g</span>
+</div>
+<div class="w-full h-1.5 bg-outline-variant/30 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 35%"></div>
+</div>
+</div>
+<!-- Fiber Sub-card -->
+<div class="bg-surface-container-low rounded-2xl p-3 border border-outline-variant/15 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-outline uppercase font-bold">Fiber</span>
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+</div>
+<div class="mt-2">
+<span class="font-title-metric-mobile text-[19px] font-bold text-on-surface leading-tight">6</span>
+<span class="font-label-md text-[11px] font-semibold text-outline">g</span>
+</div>
+<div class="w-full h-1.5 bg-outline-variant/30 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 48%"></div>
+</div>
+</div>
+</div>
+<!-- Detected Items Chips -->
+<div class="flex flex-col gap-2 pt-1">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Detected Ingredients (4)</span>
+<button class="text-[12px] font-label-md text-primary font-semibold hover:underline flex items-center gap-0.5" type="button">
+<span class="">Adjust Portions</span>
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<!-- Item Chip 1 -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface text-body-sm font-medium flex items-center gap-1.5 border border-outline-variant/20 hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-[15px] text-primary">grain</span>
+<span class="">Herb Brown Rice</span>
+<span class="text-outline text-[11px] font-semibold bg-surface-container-lowest px-1.5 py-0.5 rounded-md">180g</span>
+</div>
+<!-- Item Chip 2 -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface text-body-sm font-medium flex items-center gap-1.5 border border-outline-variant/20 hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-[15px] text-primary">restaurant</span>
+<span class="">Grilled Chicken Breast</span>
+<span class="text-outline text-[11px] font-semibold bg-surface-container-lowest px-1.5 py-0.5 rounded-md">150g</span>
+</div>
+<!-- Item Chip 3 -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface text-body-sm font-medium flex items-center gap-1.5 border border-outline-variant/20 hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-[15px] text-primary">eco</span>
+<span class="">Roasted Veggies</span>
+<span class="text-outline text-[11px] font-semibold bg-surface-container-lowest px-1.5 py-0.5 rounded-md">100g</span>
+</div>
+<!-- Item Chip 4 -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface text-body-sm font-medium flex items-center gap-1.5 border border-outline-variant/20 hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-[15px] text-primary">oil_barrel</span>
+<span class="">Tahini Garlic Drizzle</span>
+<span class="text-outline text-[11px] font-semibold bg-surface-container-lowest px-1.5 py-0.5 rounded-md">25g</span>
+</div>
+</div>
+</div>
+<!-- AI Coach Insight Note Bubble -->
+<a href="{{DATA:SCREEN:SCREEN_11}}" class="rounded-2xl bg-gradient-to-br from-primary-fixed/20 to-surface-container-low p-3.5 border border-primary/20 flex items-start gap-2.5 hover:border-primary/40 active:scale-[0.99] transition-all group"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary flex-shrink-0 shadow-sm mt-0.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[18px]">smart_toy</span></div><div class="flex flex-col gap-0.5 flex-1"><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps text-primary font-bold uppercase tracking-wider">BealthAI Coach Bio-Sync</span><span class="material-symbols-outlined text-[16px] text-primary group-hover:translate-x-0.5 transition-transform">arrow_forward</span></div><p class="font-body-sm text-body-sm text-on-surface leading-snug">✨ <span class="font-semibold">Coach Note:</span> Excellent protein density! To optimize for your deficit goal, reducing rice by 20% saves 90 kcal while retaining full satiety.</p></div></a>
+<!-- Health Disclaimer Banner -->
+<div class="rounded-xl bg-surface-container/70 p-2.5 border border-outline-variant/25 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline flex-shrink-0">info</span>
+<p class="text-[11px] font-body-sm text-on-surface-variant leading-tight">
+            Nutrition values are AI estimates and may vary based on specific preparation and portion sizes.
+          </p>
+</div>
+<!-- Action Button Group -->
+<div class="flex flex-col gap-2.5 pt-1">
+<!-- Primary CTA -->
+<a href="{{DATA:SCREEN:SCREEN_12}}" class="w-full py-3.5 px-6 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-primary active:scale-[0.98] transition-all"><span class="material-symbols-outlined text-[20px]">add_task</span><span class="">Add to Today's Log</span></a>
+<!-- Dual Secondary Actions -->
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2.5 px-3 rounded-full bg-primary/10 text-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-primary/15 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span class="">Edit Portions &amp; Ingredients</span>
+</button>
+<button class="py-2.5 px-3 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-surface-container-high active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">replay</span>
+<span class="">Analyze Again</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Shared Bottom Navigation Bar (Semantic Mapping: 'Log' is the destination for food tracking/scanning) -->
+<nav aria-label="Main Navigation" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-sm h-16 max-w-lg mx-auto pb-safe bg-surface/90 backdrop-blur-lg border-t border-outline-variant/30 shadow-lg">
+<!-- Destination 1: Today -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-medium hover:text-primary transition-colors duration-150 active:scale-95" href="{{DATA:SCREEN:SCREEN_12}}">
+<span class="material-symbols-outlined text-[22px]">home</span>
+<span class="text-[11px] font-label-caps mt-0.5">Today</span>
+</a>
+<!-- Destination 2: Log (ACTIVE - Food Vision Scanner context) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary font-bold active:scale-95 transition-transform duration-150 relative" href="{{DATA:SCREEN:SCREEN_9}}">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">document_scanner</span>
+<span class="text-[11px] font-label-caps mt-0.5">Log</span>
+<span class="absolute -top-1 w-1.5 h-1.5 rounded-full bg-primary"></span>
+</a>
+<!-- Destination 3: Fitness -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-medium hover:text-primary transition-colors duration-150 active:scale-95" href="{{DATA:SCREEN:SCREEN_6}}">
+<span class="material-symbols-outlined text-[22px]">fitness_center</span>
+<span class="text-[11px] font-label-caps mt-0.5">Fitness</span>
+</a>
+<!-- Destination 4: Coach -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-medium hover:text-primary transition-colors duration-150 active:scale-95" href="{{DATA:SCREEN:SCREEN_11}}">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+<span class="text-[11px] font-label-caps mt-0.5">Coach</span>
+</a>
+<!-- Destination 5: Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-medium hover:text-primary transition-colors duration-150 active:scale-95" href="{{DATA:SCREEN:SCREEN_8}}">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="text-[11px] font-label-caps mt-0.5">Profile</span>
+</a>
+</nav>
+</main>
+<!-- Interactive script for flash toggle & micro-interactions -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const flashBtn = document.getElementById('flash-toggle');
+      let flashActive = true;
+
+      if (flashBtn) {
+        flashBtn.addEventListener('click', () => {
+          flashActive = !flashActive;
+          const icon = flashBtn.querySelector('.material-symbols-outlined');
+          const indicator = flashBtn.querySelector('span:nth-child(2)');
+          if (icon) {
+            icon.textContent = flashActive ? 'flash_on' : 'flash_off';
+          }
+          if (indicator) {
+            indicator.style.opacity = flashActive ? '1' : '0';
+          }
+        });
+      }
+    });
+  </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BealthAI - Profile</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#9cf2e8",
+            "primary": "#005c55",
+            "tertiary-fixed": "#cce5ff",
+            "tertiary-container": "#006fa8",
+            "on-primary-fixed-variant": "#00504a",
+            "on-surface": "#131b2e",
+            "secondary-container": "#fd761a",
+            "on-secondary-fixed": "#341100",
+            "surface-dim": "#d2d9f4",
+            "on-error": "#ffffff",
+            "surface-container": "#eaedff",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#004b73",
+            "on-secondary-container": "#5c2400",
+            "on-error-container": "#93000a",
+            "inverse-on-surface": "#eef0ff",
+            "surface": "#faf8ff",
+            "on-tertiary-container": "#dbecff",
+            "surface-container-highest": "#dae2fd",
+            "outline-variant": "#bdc9c6",
+            "surface-container-high": "#e2e7ff",
+            "background": "#faf8ff",
+            "secondary": "#9d4300",
+            "inverse-primary": "#80d5cb",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#001d31",
+            "on-secondary-fixed-variant": "#783200",
+            "tertiary-fixed-dim": "#93ccff",
+            "on-surface-variant": "#3e4947",
+            "on-primary-fixed": "#00201d",
+            "secondary-fixed-dim": "#ffb690",
+            "on-background": "#131b2e",
+            "error-container": "#ffdad6",
+            "surface-bright": "#faf8ff",
+            "outline": "#6e7977",
+            "primary-fixed-dim": "#80d5cb",
+            "tertiary": "#005683",
+            "surface-tint": "#006a63",
+            "inverse-surface": "#283044",
+            "primary-container": "#0f766e",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#ffdbca",
+            "surface-variant": "#dae2fd",
+            "error": "#ba1a1a",
+            "surface-container-low": "#f2f3ff",
+            "on-primary-container": "#a3faef"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-tablet": "2rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "2rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "margin-desktop": "3rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "display-mobile": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "label-caps": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "title-metric": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "title-metric-mobile": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "title-metric": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "title-metric-mobile": ["26px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .metric-shadow {
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen pb-28 md:pb-12">
+<!-- Top Navigation Header (Derived from TopAppBar JSON Anchor) -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary-fixed docked full-width top-0 sticky z-40 shadow-sm dark:shadow-none">
+<div class="max-w-5xl mx-auto flex justify-between items-center w-full px-margin py-space-sm md:px-margin-tablet">
+<div class="flex items-center gap-2">
+<button aria-label="Go back" class="p-2 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-full transition-colors active:scale-95 duration-150 flex items-center justify-center text-on-surface" type="button" onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-headline-sm font-headline-sm text-on-surface dark:text-inverse-on-surface font-semibold tracking-tight">Profile</h1>
+</div>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'">Today</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_9}}'">Log</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_6}}'">Fitness</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_11}}'">Coach</a>
+<a class="text-primary dark:text-primary-fixed font-semibold font-label-md text-label-md border-b-2 border-primary pb-0.5" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_8}}'">Profile</a>
+</nav>
+<div class="flex items-center gap-1">
+<button aria-label="Settings" class="p-2 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-full transition-colors active:scale-95 duration-150 flex items-center justify-center text-on-surface-variant" type="button">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Profile Content Canvas -->
+<main class="max-w-5xl mx-auto px-margin md:px-margin-tablet space-y-space-xl mt-space-md">
+<!-- Profile Hero Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-space-md md:p-space-lg metric-shadow border border-outline-variant/20 relative overflow-hidden">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+<div class="relative w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-primary to-inverse-primary shadow-sm">
+<img class="w-full h-full object-cover rounded-full bg-surface-container-low" data-alt="A clean, natural warm portrait of a healthy energetic man named Pratik smiling gently against an airy soft-focused green conservatory backdrop. High-key natural morning lighting illuminates his calm and empowered expression, reflecting modern vitality and wellness clinic aesthetics with deep teal undertones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDuFzO8AJcKT38HsHwyES6_vnpMrzsI_mIrMDu9GuJ-ZX3egFR3_hiC9lPH43tAy3XFZwgD6rIh3mc0QPRX19ec1LQb1pCNUWNHs2B0vMETE6aLq8nB8KKBtW-vI_ClwjVEuSczWlwYE9sYCJfwSbzkzJAO6Kt2ODxa3fSYHK_lThn3HxLI8GImT8maGzxUh5PpTfBa4adKJOx8_Evr-LrepzTl7er3zKFOoBusfTrIcM5J6WOI-ghIg">
+<div class="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary border-2 border-surface-container-lowest shadow">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+<h2 class="text-headline-md font-headline-md text-on-surface">Pratik Bhurse</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-caps text-label-caps tracking-wider">MEMBER</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">pratik@example.com</p>
+<!-- Profile Completion Meter -->
+<div class="pt-2 w-full max-w-xs">
+<div class="flex justify-between items-center mb-1.5">
+<span class="text-label-caps font-label-caps text-on-surface-variant">PROFILE STRENGTH</span>
+<span class="text-label-md font-label-md text-primary font-semibold">85% complete</span>
+</div>
+<div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 85%;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full sm:w-auto flex justify-center">
+<button class="w-full sm:w-auto px-6 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-all active:scale-95 shadow-sm flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span class="">Edit Profile</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Section 1: Health Overview -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between px-1">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Health Overview</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Core physiological metrics &amp; target timeline</p>
+</div>
+<span class="text-label-caps font-label-caps text-primary bg-primary/10 px-3 py-1 rounded-full">VITAL SYNC ACTIVE</span>
+</div>
+<!-- 4 Compact Metric Cards (2x2 on Mobile, 4 Col on Desktop) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-2xl metric-shadow border border-outline-variant/20 hover:border-primary/30 transition-all flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-caps font-label-caps text-on-surface-variant">WEIGHT</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">scale</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-1">
+<span class="text-title-metric-mobile md:text-title-metric font-title-metric text-on-surface">72</span>
+<span class="text-label-md font-label-md text-on-surface-variant">kg</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant text-[11px] mt-0.5">Last weighed 2d ago</p>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-2xl metric-shadow border border-outline-variant/20 hover:border-primary/30 transition-all flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-caps font-label-caps text-on-surface-variant">HEIGHT</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">straighten</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-1">
+<span class="text-title-metric-mobile md:text-title-metric font-title-metric text-on-surface">165</span>
+<span class="text-label-md font-label-md text-on-surface-variant">cm</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant text-[11px] mt-0.5">Verified in clinic</p>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-2xl metric-shadow border border-outline-variant/20 hover:border-primary/30 transition-all flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-caps font-label-caps text-on-surface-variant">AGE</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">cake</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-1">
+<span class="text-title-metric-mobile md:text-title-metric font-title-metric text-on-surface">21</span>
+<span class="text-label-md font-label-md text-on-surface-variant">yrs</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant text-[11px] mt-0.5">Biological age: 19</p>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-2xl metric-shadow border border-outline-variant/20 hover:border-primary/30 transition-all flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-caps font-label-caps text-on-surface-variant">ACTIVITY</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">directions_run</span>
+</div>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm text-on-surface block leading-tight">Moderate</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant text-[11px] mt-0.5">4-5 sessions / week</p>
+</div>
+</div>
+</div>
+<!-- Current Goal Card -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-md md:p-space-lg metric-shadow border border-outline-variant/20 relative">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="space-y-2 flex-1">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed text-label-caps font-label-caps">
+<span class="material-symbols-outlined text-[14px]">track_changes</span>
+<span class="">CURRENT GOAL</span>
+</div>
+<div>
+<h4 class="text-headline-md font-headline-md text-on-surface">Weight Loss</h4>
+<p class="text-body-md font-body-md text-on-surface-variant">Target Weight: <strong class="text-on-surface font-semibold">65 kg</strong></p>
+</div>
+<!-- Visual Progress Track -->
+<div class="pt-2 space-y-2 max-w-xl">
+<div class="flex justify-between items-baseline">
+<span class="text-label-md font-label-md text-on-surface-variant">72 kg</span>
+<span class="text-label-md font-label-md text-primary font-semibold">7 kg to go (35% on track)</span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">65 kg</span>
+</div>
+<div class="w-full bg-surface-container-low h-3 rounded-full overflow-hidden p-0.5">
+<div class="bg-gradient-to-r from-primary to-inverse-primary h-full rounded-full" style="width: 35%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-2 md:pt-0">
+<button class="w-full md:w-auto px-5 py-2.5 rounded-full bg-primary/10 hover:bg-primary/20 text-primary font-label-lg text-label-lg transition-colors active:scale-95 flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="">Manage Goals</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Personalization -->
+<section class="space-y-3">
+<div class="px-1">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Personalization</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Tailor recommendations, dietary boundaries and AI tone</p>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl p-1.5 metric-shadow border border-outline-variant/20 divide-y divide-surface-container-low">
+<!-- Row 1: Food Preferences -->
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">restaurant</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface group-hover:text-primary transition-colors">Food Preferences</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Diet, cuisine, allergies and disliked foods</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+<!-- Row 2: AI Coach Preferences -->
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_11}}'">
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface group-hover:text-primary transition-colors">AI Coach Preferences</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Customize how your AI Coach guides you</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+<!-- Row 3: Daily Routine -->
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">schedule</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface group-hover:text-primary transition-colors">Daily Routine</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Sleep, meals and workout schedule</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+<!-- Row 4: Health Information -->
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface group-hover:text-primary transition-colors">Health Information</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Optional health information and restrictions</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Section 3: Connected Services -->
+<section class="space-y-3">
+<div class="px-1">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Connected Services</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Sync real-time telemetry from wearable ecosystems</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Service 1: Health Data -->
+<div class="bg-surface-container-lowest p-space-md md:p-space-lg rounded-3xl metric-shadow border border-outline-variant/20 flex flex-col justify-between space-y-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">monitor_heart</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface">Health Data</h4>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Not connected</span>
+</div>
+</div>
+</div>
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md active:scale-95 transition-all" type="button">
+              Connect
+            </button>
+</div>
+<div class="pt-2 border-t border-surface-container-low">
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-2">SUPPORTS BI-DIRECTIONAL SYNC</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant text-label-md font-label-md">
+<span class="material-symbols-outlined text-[14px] text-error">favorite</span>
+<span class="">Apple Health</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant text-label-md font-label-md">
+<span class="material-symbols-outlined text-[14px] text-tertiary">sync</span>
+<span class="">Google Health Connect</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Service 2: Smartwatch -->
+<div class="bg-surface-container-lowest p-space-md md:p-space-lg rounded-3xl metric-shadow border border-outline-variant/20 flex flex-col justify-between space-y-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">watch</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface">Smartwatch / Fitness Device</h4>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Not connected</span>
+</div>
+</div>
+</div>
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md active:scale-95 transition-all" type="button">
+              Connect
+            </button>
+</div>
+<div class="pt-2 border-t border-surface-container-low">
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-2">SUPPORTED HARDWARE</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant text-label-md font-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary">full_hd</span>
+<span class="">Fitbit</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant text-label-md font-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary">navigation</span>
+<span class="">Garmin</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: App Settings -->
+<section class="space-y-3">
+<div class="px-1">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">App Settings</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Configure notifications, standard units and security</p>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl p-1.5 metric-shadow border border-outline-variant/20 divide-y divide-surface-container-low">
+<!-- Notifications -->
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface">Notifications</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Manage reminders and alerts</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+<!-- Units & Preferences -->
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface">Units &amp; Preferences</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Metric, language and app preferences</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+<!-- Privacy & Data -->
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface">Privacy &amp; Data</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Control your personal information</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Section 5: Account & Subscriptions -->
+<section class="space-y-3">
+<div class="px-1">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Account</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Membership privileges, support and authentication</p>
+</div>
+<!-- Upgrade to Pro Card -->
+<div class="p-space-md md:p-space-lg rounded-3xl bg-gradient-to-r from-primary to-primary-container text-on-primary shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4 text-center sm:text-left">
+<div class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-on-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<div class="flex items-center justify-center sm:justify-start gap-2">
+<h4 class="text-headline-sm font-headline-sm text-on-primary">Upgrade to Pro</h4>
+<span class="px-2 py-0.5 rounded-full bg-white/20 text-on-primary font-label-caps text-[10px] tracking-wide">SPECIAL OFFER</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-primary/90 mt-0.5">Unlock advanced Health Coach features &amp; continuous longevity modeling</p>
+</div>
+</div>
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-surface text-primary hover:bg-surface-bright font-label-lg text-label-lg whitespace-nowrap active:scale-95 transition-all" type="button">
+          Explore Pro
+        </button>
+</div>
+<!-- General Account Links -->
+<div class="bg-surface-container-lowest rounded-3xl p-1.5 metric-shadow border border-outline-variant/20 divide-y divide-surface-container-low">
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</div>
+<span class="text-label-lg font-label-lg text-on-surface">Help &amp; Support</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<span class="text-label-lg font-label-lg text-on-surface">Terms &amp; Privacy</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+<button class="w-full flex items-center justify-between p-space-md hover:bg-surface-container-low/50 rounded-2xl transition-colors group text-left" type="button" onclick="window.location.href='{{DATA:SCREEN:SCREEN_4}}'">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</div>
+<span class="text-label-lg font-label-lg text-on-surface">Log Out</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</button>
+</div>
+<!-- Destructive Action Section -->
+<div class="pt-2">
+<button class="w-full flex items-center justify-between p-space-md rounded-2xl bg-error-container/30 hover:bg-error-container/50 border border-error/20 transition-colors text-left group" type="button">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[20px]">delete_forever</span>
+</div>
+<div>
+<span class="text-label-lg font-label-lg text-error block font-semibold">Delete Account</span>
+<span class="text-body-sm font-body-sm text-error/80 text-[12px]">Permanently remove all clinical records and biodata</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-error">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Regulatory / Version Badge Footer -->
+<footer class="text-center py-6">
+<p class="text-body-sm font-body-sm text-on-surface-variant">BealthAI BioSystem • v4.12.2</p>
+<p class="text-[11px] text-outline mt-0.5">HIPAA &amp; GDPR Compliant Medical Grade Encryption</p>
+</footer>
+</main>
+<!-- Bottom Navigation Bar (Mandatory Shell Anchor on Mobile) -->
+<nav aria-label="Global App Navigation" class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-sm bg-surface/85 backdrop-blur-md shadow-lg">
+<!-- Tab 1: Today -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150 py-1 px-3" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'">
+<span class="material-symbols-outlined text-[22px]">wb_sunny</span>
+<span class="text-label-md font-label-md mt-0.5">Today</span>
+</a>
+<!-- Tab 2: Log -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150 py-1 px-3" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_9}}'">
+<span class="material-symbols-outlined text-[22px]">edit_calendar</span>
+<span class="text-label-md font-label-md mt-0.5">Log</span>
+</a>
+<!-- Tab 3: Fitness -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150 py-1 px-3" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_6}}'">
+<span class="material-symbols-outlined text-[22px]">vital_signs</span>
+<span class="text-label-md font-label-md mt-0.5">Fitness</span>
+</a>
+<!-- Tab 4: Coach -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150 py-1 px-3" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_11}}'">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+<span class="text-label-md font-label-md mt-0.5">Coach</span>
+</a>
+<!-- Tab 5: Profile (Active Tab with strict style mapping) -->
+<a class="flex flex-col items-center justify-center text-primary font-semibold hover:text-primary transition-colors active:scale-95 duration-150 py-1 px-3" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_8}}'">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-label-md font-label-md mt-0.5 font-semibold">Profile</span>
+</a>
+</nav>
+
+
+
+
+</body></html>

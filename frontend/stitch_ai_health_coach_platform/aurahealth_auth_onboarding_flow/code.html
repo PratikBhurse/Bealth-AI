@@ -1,0 +1,1365 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BealthAI - AI Personal Health Coach Onboarding</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "outline": "#6e7977",
+            "surface-variant": "#dae2fd",
+            "surface-container-high": "#e2e7ff",
+            "outline-variant": "#bdc9c6",
+            "on-primary-fixed": "#00201d",
+            "on-error": "#ffffff",
+            "primary-fixed": "#9cf2e8",
+            "on-secondary-fixed": "#341100",
+            "tertiary": "#005683",
+            "inverse-surface": "#283044",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#f2f3ff",
+            "on-tertiary-fixed": "#001d31",
+            "on-secondary-fixed-variant": "#783200",
+            "surface-dim": "#d2d9f4",
+            "primary-container": "#0f766e",
+            "on-primary-fixed-variant": "#00504a",
+            "on-secondary-container": "#5c2400",
+            "primary-fixed-dim": "#80d5cb",
+            "on-tertiary-container": "#dbecff",
+            "tertiary-container": "#006fa8",
+            "surface-container": "#eaedff",
+            "tertiary-fixed": "#cce5ff",
+            "on-surface-variant": "#3e4947",
+            "surface-bright": "#faf8ff",
+            "on-tertiary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-container-highest": "#dae2fd",
+            "surface-tint": "#006a63",
+            "inverse-primary": "#80d5cb",
+            "on-primary": "#ffffff",
+            "secondary-fixed-dim": "#ffb690",
+            "on-primary-container": "#a3faef",
+            "primary": "#005c55",
+            "on-background": "#131b2e",
+            "on-surface": "#131b2e",
+            "inverse-on-surface": "#eef0ff",
+            "tertiary-fixed-dim": "#93ccff",
+            "on-tertiary-fixed-variant": "#004b73",
+            "error": "#ba1a1a",
+            "secondary-container": "#fd761a",
+            "surface": "#faf8ff",
+            "secondary-fixed": "#ffdbca",
+            "secondary": "#9d4300",
+            "background": "#faf8ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "margin": "1rem",
+            "margin-desktop": "3rem",
+            "gutter-tablet": "1.5rem",
+            "gutter-desktop": "2rem",
+            "margin-tablet": "2rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "title-metric": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "label-md": ["Inter"],
+            "display-mobile": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "title-metric-mobile": ["Plus Jakarta Sans"],
+            "label-caps": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "title-metric": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "title-metric-mobile": ["26px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined[data-weight="fill"] {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-shadow-soft {
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+    }
+    .custom-shadow-float {
+      box-shadow: 0 12px 32px -4px rgba(15, 118, 110, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col items-center justify-start p-0 selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Interactive Sandbox Quick-Jump Ribbon (Allows testing all flow states instantly) -->
+<header class="w-full bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant/30 sticky top-0 z-50 py-2.5 px-4 shadow-sm">
+<div class="max-w-md mx-auto flex items-center justify-between gap-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-xl" data-weight="fill">spa</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container tracking-tight">BealthAI</span>
+</div>
+<div class="flex items-center gap-1">
+<label class="font-label-caps text-label-caps text-outline uppercase font-semibold" for="flowSelector">Stage:</label>
+<select class="text-xs bg-surface-container-low border-0 rounded-full py-1 px-2.5 font-label-md text-on-surface focus:ring-2 focus:ring-primary" id="flowSelector" onchange="switchStep(this.value)">
+<option value="welcome">0. Welcome</option>
+<option value="auth">Auth / Sign Up</option>
+<option value="step1">Step 1: Basic Info</option>
+<option value="step2">Step 2: Body Metrics</option>
+<option value="step3">Step 3: Main Goal</option>
+<option value="step4">Step 4: Activity Level</option>
+<option value="step5">Step 5: Diet Preference</option>
+<option value="step6">Step 6: Food &amp; Habits</option>
+<option value="step7">Step 7: Daily Routine</option>
+<option value="step8">Step 8: Workout Styles</option>
+<option value="step9">Step 9: Coach Tone</option>
+<option value="generating">AI Plan Building</option>
+<option value="ready">Completed Plan</option>
+</select>
+</div>
+</div>
+</header>
+<!-- Main Mobile Shell Canvas -->
+<main class="w-full max-w-md flex-1 flex flex-col bg-surface min-h-[calc(100vh-49px)] pb-12 relative overflow-hidden">
+<!-- Progress Indicator Bar for Stepper (Hidden on Welcome, Auth, and Ready) -->
+<div class="hidden w-full px-5 pt-4 pb-2 bg-surface" id="stepperProgressBarContainer">
+<div class="flex items-center justify-between mb-1.5">
+<button class="p-1 -ml-1 text-on-surface-variant hover:text-primary transition-colors flex items-center" onclick="goPreviousStep()">
+<span class="material-symbols-outlined text-xl">arrow_back</span>
+</button>
+<span class="font-label-caps text-label-caps text-primary-container tracking-wide uppercase" id="stepCounterLabel">Step 1 of 9</span>
+<span class="font-label-caps text-label-caps text-outline">Longevity Path</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-300 ease-out" id="stepperProgressBarFill" style="width: 11%;"></div>
+</div>
+</div>
+<!-- ==================== 0. WELCOME / LANDING SCREEN ==================== -->
+<section class="flow-view flex flex-col px-5 pt-4 pb-8 flex-1 justify-between" id="view-welcome">
+<div class="flex flex-col items-center text-center">
+<!-- Hero Visual / Graphic -->
+<div class="w-full rounded-3xl overflow-hidden mb-6 relative bg-gradient-to-b from-primary-fixed/30 to-surface-container-lowest p-5 flex flex-col items-center border border-primary/10 custom-shadow-soft">
+<div class="relative w-48 h-48 my-2 flex items-center justify-center">
+<!-- Ambient concentric circular rings representing holistic health -->
+<div class="absolute inset-0 rounded-full border-2 border-dashed border-primary-fixed-dim/60 animate-spin" style="animation-duration: 25s;"></div>
+<div class="w-36 h-36 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm custom-shadow-float flex flex-col items-center justify-center p-3 text-center border border-primary/10">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-1" data-weight="fill">vital_signs</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">BealthAI</span>
+<span class="font-label-caps text-label-caps text-primary uppercase">Biometric Core</span>
+</div>
+<div class="absolute top-2 right-2 bg-surface-container-lowest px-2.5 py-1 rounded-full text-xs font-label-md text-primary-container shadow-sm flex items-center gap-1 border border-primary/15">
+<span class="material-symbols-outlined text-sm" data-weight="fill">arrow_back_ios_new</span> Adaptive AI
+            </div>
+<div class="absolute bottom-1 left-2 bg-surface-container-lowest px-2.5 py-1 rounded-full text-xs font-label-md text-secondary shadow-sm flex items-center gap-1 border border-secondary/20">
+<span class="material-symbols-outlined text-sm" data-weight="fill">favorite</span> Vitals Sync
+            </div>
+</div>
+<!-- Value prop pills -->
+<div class="flex flex-wrap items-center justify-center gap-2 mt-3">
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md border border-outline-variant/30 shadow-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">restaurant</span> Personalized Nutrition
+            </span>
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md border border-outline-variant/30 shadow-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">fitness_center</span> Smart Workouts
+            </span>
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md border border-outline-variant/30 shadow-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">psychology</span> AI Longevity Coach
+            </span>
+</div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold tracking-tight mb-2">
+          Your Personal AI Health Coach
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-6">
+          Understand your habits. Eat better. Move smarter. Build a healthier, scientifically aligned routine.
+        </p>
+</div>
+<div class="w-full space-y-3 pt-2">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="window.location.href='{{DATA:SCREEN:SCREEN_2}}'">
+<span class="">Get Started</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="w-full py-3.5 rounded-full bg-primary/10 text-primary-container font-label-lg text-label-lg hover:bg-primary/15 transition-transform active:scale-95 flex items-center justify-center" onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'">
+          Sign In
+        </button>
+<p class="text-center font-label-caps text-label-caps text-outline pt-2">
+          Trusted by 140,000+ wellness seekers &amp; longevity clinicians
+        </p>
+</div>
+</section>
+<!-- ==================== AUTHENTICATION SCREEN ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-4 pb-8 flex-1 justify-between" id="view-auth">
+<div>
+<div class="flex items-center justify-between mb-4">
+<button class="p-1 -ml-1 text-on-surface-variant hover:text-primary transition-colors" onclick="switchStep('welcome')">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold">Secure Access</span>
+</div>
+<div class="mb-5">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold" id="authTitle">
+            Create your account
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1" id="authSubtitle">
+            Begin your biometric calibration and health partnership today.
+          </p>
+</div>
+<!-- Social logins -->
+<div class="grid grid-cols-2 gap-3 mb-5">
+<button class="flex items-center justify-center gap-2 py-3 px-3 bg-surface-container-lowest border border-outline-variant/50 rounded-xl hover:bg-surface-container-low transition-colors shadow-xs active:scale-98" onclick="simulateSocialAuth('Google')">
+<svg class="w-4 h-4" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path></svg>
+<span class="font-label-md text-label-md text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-3 px-3 bg-surface-container-lowest border border-outline-variant/50 rounded-xl hover:bg-surface-container-low transition-colors shadow-xs active:scale-98" onclick="simulateSocialAuth('Apple')">
+<svg class="w-4 h-4 text-on-surface" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.92-2.88-.9.04-1.99.6-2.63 1.35-.58.67-.99 1.74-.88 2.78.99.08 2.01-.5 2.59-1.25z"></path></svg>
+<span class="font-label-md text-label-md text-on-surface">Apple</span>
+</button>
+</div>
+<div class="relative flex items-center justify-center my-4">
+<div class="border-t border-outline-variant/40 w-full"></div>
+<span class="bg-surface px-3 font-label-caps text-label-caps text-outline uppercase">Or email</span>
+</div>
+<!-- Auth Form Fields -->
+<form class="space-y-3.5" id="authForm" onsubmit="handleAuthSubmit(event)">
+<div id="nameFieldContainer">
+<label class="block font-label-md text-label-md text-on-surface mb-1">Full Name</label>
+<div class="relative">
+<input class="w-full px-3.5 py-3 rounded-xl bg-surface-container-lowest border border-outline-variant/60 focus:border-primary focus:ring-2 focus:ring-primary/20 text-on-surface font-body-md text-body-md transition-all outline-none" id="authName" placeholder="Alex Morgan" required="" type="text" value="Alex Morgan">
+<span class="material-symbols-outlined absolute right-3.5 top-3.5 text-outline text-lg">person</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Email Address</label>
+<div class="relative">
+<input class="w-full px-3.5 py-3 rounded-xl bg-surface-container-lowest border border-outline-variant/60 focus:border-primary focus:ring-2 focus:ring-primary/20 text-on-surface font-body-md text-body-md transition-all outline-none" id="authEmail" placeholder="alex@domain.com" required="" type="email" value="alex.morgan@wellness.io">
+<span class="material-symbols-outlined absolute right-3.5 top-3.5 text-outline text-lg">mail</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Password</label>
+<div class="relative">
+<input class="w-full px-3.5 py-3 rounded-xl bg-surface-container-lowest border border-outline-variant/60 focus:border-primary focus:ring-2 focus:ring-primary/20 text-on-surface font-body-md text-body-md transition-all outline-none" id="authPassword" placeholder="Enter secure password" required="" type="password" value="••••••••••••">
+<button class="absolute right-3.5 top-3.5 text-outline hover:text-on-surface" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-lg" id="pwdEyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-start gap-2 pt-1">
+<input checked="" class="mt-1 rounded text-primary-container focus:ring-primary h-4 w-4 border-outline-variant" id="termsCheck" type="checkbox">
+<label class="font-body-sm text-body-sm text-outline" for="termsCheck">
+              I agree to the <a class="underline text-primary-container font-medium" href="#">Terms of Care</a> and <a class="underline text-primary-container font-medium" href="#">HIPAA Privacy Notice</a>.
+            </label>
+</div>
+<button class="w-full mt-4 py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" type="submit">
+<span id="authSubmitText" class="">Continue to Health Calibration</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</form>
+</div>
+<div class="text-center pt-4">
+<p class="font-body-md text-body-md text-on-surface-variant">
+<span id="authToggleQuestion" class="">Already registered?</span>
+<button class="text-primary-container font-label-lg text-label-lg hover:underline ml-1" onclick="toggleAuthMode()" type="button">
+<span id="authToggleBtn" class="">Sign In</span>
+</button>
+</p>
+</div>
+</section>
+<!-- ==================== STEP 1: BASIC INFO ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step1">
+<div>
+<div class="mb-5">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Demographic Foundation</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">Tell us about yourself</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Our biological models adjust metabolic rates based on chronological age &amp; physiology.</p>
+</div>
+<div class="space-y-5">
+<!-- Age Selector -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-primary/10 custom-shadow-soft">
+<label class="flex items-center justify-between font-label-md text-label-md text-on-surface mb-2">
+<span class="">Your Age</span>
+<span class="font-title-metric-mobile text-title-metric-mobile text-primary-container" id="ageDisplay">28 yrs</span>
+</label>
+<input class="w-full accent-primary-container h-2 bg-surface-container-high rounded-lg cursor-pointer" id="ageRangeInput" max="90" min="16" oninput="updateAge(this.value)" type="range" value="28">
+<div class="flex justify-between text-outline font-label-caps text-label-caps mt-1">
+<span class="">18</span>
+<span class="">45</span>
+<span class="">80+</span>
+</div>
+</div>
+<!-- Gender Identification -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Biological Sex / Physiology</label>
+<div class="grid grid-cols-2 gap-2.5" id="genderGrid">
+<button class="gender-btn active py-3.5 px-3 rounded-2xl border-2 border-primary-container bg-primary-fixed/20 text-on-surface font-label-lg text-label-lg flex items-center justify-between transition-all" onclick="selectGender(this, 'Female')" type="button">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-xl">female</span> Female</span>
+<span class="material-symbols-outlined text-primary-container text-lg check-icon" data-weight="fill">check_circle</span>
+</button>
+<button class="gender-btn py-3.5 px-3 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest text-on-surface font-label-lg text-label-lg flex items-center justify-between transition-all hover:bg-surface-container-low" onclick="selectGender(this, 'Male')" type="button">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-outline text-xl">male</span> Male</span>
+<span class="material-symbols-outlined text-transparent text-lg check-icon">check_circle</span>
+</button>
+<button class="gender-btn py-3.5 px-3 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest text-on-surface font-label-lg text-label-lg flex items-center justify-between transition-all hover:bg-surface-container-low" onclick="selectGender(this, 'Non-binary')" type="button">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-outline text-xl">transgender</span> Non-binary</span>
+<span class="material-symbols-outlined text-transparent text-lg check-icon">check_circle</span>
+</button>
+<button class="gender-btn py-3.5 px-3 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest text-on-surface font-label-lg text-label-lg flex items-center justify-between transition-all hover:bg-surface-container-low" onclick="selectGender(this, 'Prefer not to say')" type="button">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-outline text-xl">visibility_off</span> Private</span>
+<span class="material-symbols-outlined text-transparent text-lg check-icon">check_circle</span>
+</button>
+</div>
+</div>
+<!-- Conversational Coach Whisper -->
+<div class="bg-primary-fixed/30 rounded-2xl p-3.5 flex items-start gap-3 border border-primary/20">
+<span class="material-symbols-outlined text-primary-container text-2xl mt-0.5" data-weight="fill">smart_toy</span>
+<div class="text-xs font-body-sm text-body-sm text-on-surface">
+<strong class="font-label-md text-primary-container">BealthAI Coach:</strong>
+              "We treat biometric markers with clinical confidentiality to calculate precision basal metabolic energy requirements."
+            </div>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="switchStep('step2')">
+<span class="">Continue to Metrics</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- ==================== STEP 2: BODY METRICS ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step2">
+<div>
+<div class="mb-5">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Vitals &amp; Frame</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">Body Metrics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Allows precise calorie burn, hydration requirements, and load pacing.</p>
+</div>
+<div class="space-y-4">
+<!-- Height Card with Unit Toggle -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-primary/10 custom-shadow-soft">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base">height</span> Height
+              </span>
+<div class="flex bg-surface-container-high rounded-full p-0.5 text-xs font-label-caps">
+<button class="px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary font-bold" id="unitCm" onclick="toggleHeightUnit('cm')" type="button">CM</button>
+<button class="px-2.5 py-0.5 rounded-full text-on-surface-variant" id="unitFt" onclick="toggleHeightUnit('ft')" type="button">FT</button>
+</div>
+</div>
+<div class="flex items-baseline justify-center py-2 gap-1.5">
+<span class="font-title-metric text-title-metric text-on-surface font-bold" id="heightValueDisplay">165</span>
+<span class="font-label-lg text-label-lg text-outline" id="heightUnitDisplay">cm</span>
+</div>
+<input class="w-full accent-primary-container h-2 bg-surface-container-high rounded-lg cursor-pointer" id="heightSlider" max="220" min="130" oninput="updateHeight(this.value)" type="range" value="165">
+</div>
+<!-- Weight Card with Unit Toggle -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-primary/10 custom-shadow-soft">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base">monitor_weight</span> Weight
+              </span>
+<div class="flex bg-surface-container-high rounded-full p-0.5 text-xs font-label-caps">
+<button class="px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary font-bold" id="unitKg" onclick="toggleWeightUnit('kg')" type="button">KG</button>
+<button class="px-2.5 py-0.5 rounded-full text-on-surface-variant" id="unitLb" onclick="toggleWeightUnit('lb')" type="button">LB</button>
+</div>
+</div>
+<div class="flex items-baseline justify-center py-2 gap-1.5">
+<span class="font-title-metric text-title-metric text-on-surface font-bold" id="weightValueDisplay">72.0</span>
+<span class="font-label-lg text-label-lg text-outline" id="weightUnitDisplay">kg</span>
+</div>
+<input class="w-full accent-primary-container h-2 bg-surface-container-high rounded-lg cursor-pointer" id="weightSlider" max="150" min="40" oninput="updateWeight(this.value)" step="0.5" type="range" value="72">
+</div>
+<!-- BMI Quick Peek Indicator -->
+<div class="bg-surface-container-low p-3.5 rounded-2xl flex items-center justify-between border border-outline-variant/30">
+<div>
+<div class="font-label-caps text-label-caps text-outline uppercase">Computed Baseline BMI</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">26.4 <span class="font-label-md text-label-md text-secondary font-medium">Balanced Frame</span></div>
+</div>
+<span class="material-symbols-outlined text-primary-container text-2xl" data-weight="fill">verified</span>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="switchStep('step3')">
+<span class="">Next: Health Intent</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- ==================== STEP 3: MAIN GOAL ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step3">
+<div>
+<div class="mb-4">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Primary Directive</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">What is your core goal?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Your AI coach tailors all macronutrients and workout stimulus to this priority.</p>
+</div>
+<div class="space-y-2.5" id="goalsList">
+<!-- Option 1: Lose Weight (Default Active) -->
+<div class="goal-item active p-3.5 rounded-2xl border-2 border-primary-container bg-primary-fixed/20 cursor-pointer transition-all flex items-center justify-between custom-shadow-soft" onclick="selectGoalCard(this, 'Lose Weight (-5kg)')">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-weight="fill">local_fire_department</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Lose Weight &amp; Lean Out</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Recommended target: -5 kg sustainably</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container text-xl goal-icon" data-weight="fill">check_circle</span>
+</div>
+<!-- Option 2: Gain Muscle -->
+<div class="goal-item p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer transition-all flex items-center justify-between hover:bg-surface-container-low" onclick="selectGoalCard(this, 'Gain Muscle')">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">fitness_center</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Gain Lean Muscle Mass</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hypertrophy stimulus + protein surplus</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-transparent text-xl goal-icon">check_circle</span>
+</div>
+<!-- Option 3: Improve Fitness -->
+<div class="goal-item p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer transition-all flex items-center justify-between hover:bg-surface-container-low" onclick="selectGoalCard(this, 'Improve Fitness &amp; Stamina')">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">sprint</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Improve Stamina &amp; VO2 Max</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cardiovascular capacity &amp; endurance</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-transparent text-xl goal-icon">check_circle</span>
+</div>
+<!-- Option 4: Eat Healthier -->
+<div class="goal-item p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer transition-all flex items-center justify-between hover:bg-surface-container-low" onclick="selectGoalCard(this, 'Eat Healthier')">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">nutrition</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Eat Healthier &amp; Mindfully</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Nutrient density &amp; gut microbiome balance</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-transparent text-xl goal-icon">check_circle</span>
+</div>
+<!-- Option 5: Build Routine -->
+<div class="goal-item p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer transition-all flex items-center justify-between hover:bg-surface-container-low" onclick="selectGoalCard(this, 'Build Routine')">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">alarm_on</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Build Daily Consistency</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Small micro-habits that stick permanently</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-transparent text-xl goal-icon">check_circle</span>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="switchStep('step4')">
+<span class="">Continue to Activity Level</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- ==================== STEP 4: ACTIVITY LEVEL ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step4">
+<div>
+<div class="mb-5">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Metabolic Expenditure</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">Current Activity Level</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">How physically active is your regular week outside of formal training?</p>
+</div>
+<div class="space-y-3" id="activityCardsContainer">
+<div class="act-card p-4 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer transition-all" onclick="selectActivityCard(this, 'Sedentary')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Sedentary</span>
+<span class="font-label-caps text-label-caps text-outline">Desk Bound</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mostly sitting, little to no intentional physical movement.</p>
+</div>
+<div class="act-card p-4 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer transition-all" onclick="selectActivityCard(this, 'Lightly Active')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Lightly Active</span>
+<span class="font-label-caps text-label-caps text-outline">1-2 Days / Wk</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Occasional walks, light household chores, infrequent workouts.</p>
+</div>
+<div class="act-card active p-4 rounded-2xl border-2 border-primary-container bg-primary-fixed/20 cursor-pointer transition-all custom-shadow-soft" onclick="selectActivityCard(this, 'Moderately Active')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container">Moderately Active</span>
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold">3-5 sessions/wk</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Regular jogging, cycling, fitness training, or brisk commutes.</p>
+</div>
+<div class="act-card p-4 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer transition-all" onclick="selectActivityCard(this, 'Very Active')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Very Active / Athlete</span>
+<span class="font-label-caps text-label-caps text-outline">6-7 Days / Wk</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Heavy physical job or intense athletic training twice daily.</p>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="switchStep('step5')">
+<span class="">Set Dietary Preferences</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- ==================== STEP 5: DIETARY PREFERENCES ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step5">
+<div>
+<div class="mb-5">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Nutrition Foundation</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">Dietary Philosophy</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Select the nutritional blueprint that aligns with your lifestyle and values.</p>
+</div>
+<div class="grid grid-cols-2 gap-3" id="dietGrid">
+<button class="diet-btn active p-3.5 rounded-2xl border-2 border-primary-container bg-primary-fixed/20 text-left transition-all" onclick="selectDiet(this, 'Vegetarian')" type="button">
+<span class="material-symbols-outlined text-primary-container text-2xl mb-1" data-weight="fill">eco</span>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Vegetarian</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Plant &amp; dairy balance</div>
+</button>
+<button class="diet-btn p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest text-left transition-all hover:bg-surface-container-low" onclick="selectDiet(this, 'Non-Vegetarian')" type="button">
+<span class="material-symbols-outlined text-outline text-2xl mb-1">set_meal</span>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Non-Vegetarian</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Lean poultry, fish, eggs</div>
+</button>
+<button class="diet-btn p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest text-left transition-all hover:bg-surface-container-low" onclick="selectDiet(this, 'Vegan')" type="button">
+<span class="material-symbols-outlined text-outline text-2xl mb-1">psychiatry</span>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Vegan</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">100% plant-derived</div>
+</button>
+<button class="diet-btn p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest text-left transition-all hover:bg-surface-container-low" onclick="selectDiet(this, 'Eggetarian')" type="button">
+<span class="material-symbols-outlined text-outline text-2xl mb-1">egg_alt</span>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Eggetarian</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Vegetarian with eggs</div>
+</button>
+<button class="diet-btn p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest text-left transition-all hover:bg-surface-container-low" onclick="selectDiet(this, 'Jain')" type="button">
+<span class="material-symbols-outlined text-outline text-2xl mb-1">yard</span>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Jain</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">No root vegetables</div>
+</button>
+<button class="diet-btn p-3.5 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest text-left transition-all hover:bg-surface-container-low" onclick="selectDiet(this, 'Keto / Low Carb')" type="button">
+<span class="material-symbols-outlined text-outline text-2xl mb-1">cloud_download</span>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Keto / Low-Carb</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">High healthy fats</div>
+</button>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="switchStep('step6')">
+<span class="">Next: Food Taste &amp; Allergies</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- ==================== STEP 6: FOOD PREFERENCES & ALLERGIES ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step6">
+<div>
+<div class="mb-4">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Taste &amp; Tolerance</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">Cuisines &amp; Allergens</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">BealthAI ensures every proposed meal plan is appetizing and safe.</p>
+</div>
+<div class="space-y-4">
+<!-- Cuisines Multi-select -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Favorite Cuisines (Choose 1 or more)</label>
+<div class="flex flex-wrap gap-2" id="cuisineTags">
+<button class="tag-chip active px-3.5 py-2 rounded-full bg-primary-container text-on-primary font-label-md text-label-md transition-all flex items-center gap-1" onclick="toggleTag(this)" type="button">
+<span class="">Mediterranean</span>
+<span class="material-symbols-outlined text-xs">check</span>
+</button>
+<button class="tag-chip active px-3.5 py-2 rounded-full bg-primary-container text-on-primary font-label-md text-label-md transition-all flex items-center gap-1" onclick="toggleTag(this)" type="button">
+<span class="">Indian</span>
+<span class="material-symbols-outlined text-xs">check</span>
+</button>
+<button class="tag-chip px-3.5 py-2 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md transition-all flex items-center gap-1" onclick="toggleTag(this)" type="button">
+<span class="">Asian / Stir Fry</span>
+</button>
+<button class="tag-chip px-3.5 py-2 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md transition-all flex items-center gap-1" onclick="toggleTag(this)" type="button">
+<span class="">Mexican / Bowls</span>
+</button>
+<button class="tag-chip px-3.5 py-2 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md transition-all flex items-center gap-1" onclick="toggleTag(this)" type="button">
+<span class="">Nordic Clean</span>
+</button>
+</div>
+</div>
+<!-- Daily Meal Frequency -->
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl border border-primary/10">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-on-surface">Target Meal Frequency</span>
+<span class="font-label-lg text-label-lg text-primary-container font-bold" id="mealFreqLabel">3 Meals + 1 Snack</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<button class="meal-opt py-2 rounded-xl border border-outline-variant/40 text-xs font-label-md text-on-surface text-center" onclick="selectMealFreq(this, '2-3 Meals')" type="button">2-3 Meals</button>
+<button class="meal-opt active py-2 rounded-xl border-2 border-primary-container bg-primary-fixed/20 font-bold text-xs text-primary-container text-center" onclick="selectMealFreq(this, '3-4 Meals')" type="button">3-4 Meals</button>
+<button class="meal-opt py-2 rounded-xl border border-outline-variant/40 text-xs font-label-md text-on-surface text-center" onclick="selectMealFreq(this, '5+ Grazing')" type="button">5+ Grazing</button>
+</div>
+</div>
+<!-- Common Allergies -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Known Sensitivities or Allergies</label>
+<div class="flex flex-wrap gap-2" id="allergyTags">
+<button class="tag-chip px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md transition-all" onclick="toggleTag(this)" type="button">Gluten-Free</button>
+<button class="tag-chip active px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md transition-all flex items-center gap-1" onclick="toggleTag(this)" type="button">
+<span class="">Dairy / Lactose</span>
+<span class="material-symbols-outlined text-xs">check</span>
+</button>
+<button class="tag-chip px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md transition-all" onclick="toggleTag(this)" type="button">Peanuts &amp; Tree Nuts</button>
+<button class="tag-chip px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md transition-all" onclick="toggleTag(this)" type="button">Shellfish</button>
+<button class="tag-chip px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md transition-all" onclick="toggleTag(this)" type="button">None / Zero</button>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="switchStep('step7')">
+<span class="">Configure Daily Routine</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- ==================== STEP 7: DAILY ROUTINE ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step7">
+<div>
+<div class="mb-5">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Circadian Rhythms</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">Your Daily Chronotype</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Aligning reminders to your biological sleep-wake cycle prevents stress spikes.</p>
+</div>
+<div class="space-y-4">
+<!-- Wake Up Time -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-primary/10 custom-shadow-soft flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed/40 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl" data-weight="fill">wb_sunny</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Target Wake Up</h3>
+<p class="font-body-sm text-body-sm text-outline">Consistent morning rise</p>
+</div>
+</div>
+<input class="border border-outline-variant/50 rounded-xl px-2.5 py-1.5 bg-surface-container-low font-headline-sm text-headline-sm font-bold text-primary-container focus:ring-1 focus:ring-primary outline-none" type="time" value="07:30">
+</div>
+<!-- Sleep Time -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-primary/10 custom-shadow-soft flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/40 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl" data-weight="fill">bedtime</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Target Bedtime</h3>
+<p class="font-body-sm text-body-sm text-outline">8 Hours Rest Target</p>
+</div>
+</div>
+<input class="border border-outline-variant/50 rounded-xl px-2.5 py-1.5 bg-surface-container-low font-headline-sm text-headline-sm font-bold text-primary-container focus:ring-1 focus:ring-primary outline-none" type="time" value="23:30">
+</div>
+<!-- Workout Preferred Time -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Optimal Workout Window</label>
+<div class="grid grid-cols-3 gap-2" id="workoutTimeGrid">
+<button class="time-slot-btn py-3 px-2 rounded-xl border border-outline-variant/40 bg-surface-container-lowest text-center transition-all" onclick="selectTimeSlot(this, 'Morning')" type="button">
+<span class="material-symbols-outlined text-outline text-lg mb-0.5">wb_twilight</span>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Morning</div>
+<div class="text-[10px] text-outline">6 - 9 AM</div>
+</button>
+<button class="time-slot-btn py-3 px-2 rounded-xl border border-outline-variant/40 bg-surface-container-lowest text-center transition-all" onclick="selectTimeSlot(this, 'Afternoon')" type="button">
+<span class="material-symbols-outlined text-outline text-lg mb-0.5">sunny</span>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Midday</div>
+<div class="text-[10px] text-outline">12 - 2 PM</div>
+</button>
+<button class="time-slot-btn active py-3 px-2 rounded-xl border-2 border-primary-container bg-primary-fixed/20 text-center transition-all" onclick="selectTimeSlot(this, 'Evening')" type="button">
+<span class="material-symbols-outlined text-primary-container text-lg mb-0.5" data-weight="fill">nights_stay</span>
+<div class="font-label-md text-label-md text-primary-container font-bold">Evening</div>
+<div class="text-[10px] text-primary-container">5 - 8 PM</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="switchStep('step8')">
+<span class="">Configure Workouts</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- ==================== STEP 8: WORKOUT PREFERENCES ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step8">
+<div>
+<div class="mb-4">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Movement Environment</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">Workout Preferences</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Customize duration, location, and available gear.</p>
+</div>
+<div class="space-y-4">
+<!-- Location Buttons -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Primary Setting</label>
+<div class="grid grid-cols-3 gap-2" id="envGrid">
+<button class="env-btn active py-3 rounded-2xl border-2 border-primary-container bg-primary-fixed/20 flex flex-col items-center" onclick="selectEnv(this, 'Home')" type="button">
+<span class="material-symbols-outlined text-primary-container text-xl mb-1" data-weight="fill">cottage</span>
+<span class="font-label-md text-label-md font-bold text-primary-container">Home</span>
+</button>
+<button class="env-btn py-3 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest flex flex-col items-center" onclick="selectEnv(this, 'Gym')" type="button">
+<span class="material-symbols-outlined text-outline text-xl mb-1">fitness_center</span>
+<span class="font-label-md text-label-md text-on-surface">Gym Studio</span>
+</button>
+<button class="env-btn py-3 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest flex flex-col items-center" onclick="selectEnv(this, 'Outdoor')" type="button">
+<span class="material-symbols-outlined text-outline text-xl mb-1">park</span>
+<span class="font-label-md text-label-md text-on-surface">Outdoor</span>
+</button>
+</div>
+</div>
+<!-- Duration Pill Selector -->
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl border border-primary/10">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-on-surface">Available Duration</span>
+<span class="font-label-md text-label-md text-primary-container font-bold" id="durationLabel">25 - 30 Minutes</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<button class="dur-btn py-2 rounded-xl border border-outline-variant/40 text-xs font-label-md text-on-surface text-center" onclick="selectDuration(this, '15-20 min')" type="button">15-20 min</button>
+<button class="dur-btn active py-2 rounded-xl border-2 border-primary-container bg-primary-fixed/20 text-xs font-bold text-primary-container text-center" onclick="selectDuration(this, '25-30 min')" type="button">25-30 min</button>
+<button class="dur-btn py-2 rounded-xl border border-outline-variant/40 text-xs font-label-md text-on-surface text-center" onclick="selectDuration(this, '45-60 min')" type="button">45-60 min</button>
+</div>
+</div>
+<!-- Equipment Tags -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Equipment on hand</label>
+<div class="flex flex-wrap gap-2" id="equipTags">
+<button class="tag-chip active px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="toggleTag(this)" type="button">
+<span class="">Dumbbells</span>
+<span class="material-symbols-outlined text-xs">check</span>
+</button>
+<button class="tag-chip active px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="toggleTag(this)" type="button">
+<span class="">Bodyweight Only</span>
+<span class="material-symbols-outlined text-xs">check</span>
+</button>
+<button class="tag-chip px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md" onclick="toggleTag(this)" type="button">Resistance Bands</button>
+<button class="tag-chip px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md" onclick="toggleTag(this)" type="button">Kettlebell</button>
+<button class="tag-chip px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md" onclick="toggleTag(this)" type="button">Pull-up Bar</button>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="switchStep('step9')">
+<span class="">Review Calibration</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- ==================== STEP 9: REVIEW PROFILE & AI COACH PREFERENCES ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-3 pb-8 flex-1 justify-between" id="view-step9">
+<div>
+<div class="mb-4">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Calibration Review</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1">Your Profile &amp; AI Tone</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Review your telemetry and configure your AI coach's conversational style.</p>
+</div>
+<!-- Summary Metric Bento -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 border border-primary/10 custom-shadow-soft mb-4 space-y-2.5">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/20">
+<span class="font-label-caps text-label-caps text-outline uppercase">Biometric Summary</span>
+<button class="text-xs font-label-md text-primary hover:underline" onclick="switchStep('step2')">Edit Vitals</button>
+</div>
+<div class="grid grid-cols-2 gap-2 text-sm">
+<div class="p-2 rounded-xl bg-surface-container-low">
+<span class="text-[11px] text-outline font-label-caps block">HEIGHT &amp; WEIGHT</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">165 cm · 72 kg</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-low">
+<span class="text-[11px] text-outline font-label-caps block">PRIMARY GOAL</span>
+<span class="font-label-lg text-label-lg font-bold text-primary-container">Lose Weight (-5kg)</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-low">
+<span class="text-[11px] text-outline font-label-caps block">NUTRITION</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Vegetarian (Lactose-free)</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-low">
+<span class="text-[11px] text-outline font-label-caps block">TRAINING</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Home · 25-30 min</span>
+</div>
+</div>
+</div>
+<!-- Coach Tone Selector -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">AI Health Coach Persona</label>
+<div class="space-y-2" id="coachToneGroup">
+<div class="tone-card p-3 rounded-xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer flex items-center justify-between" onclick="selectTone(this, 'Empathetic &amp; Supportive')">
+<div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Empathetic &amp; Supportive</span>
+<p class="font-body-sm text-body-sm text-outline">Gentle positive reinforcement, non-judgmental.</p>
+</div>
+<span class="material-symbols-outlined text-transparent text-lg tone-check">check_circle</span>
+</div>
+<div class="tone-card active p-3 rounded-xl border-2 border-primary-container bg-primary-fixed/20 cursor-pointer flex items-center justify-between" onclick="selectTone(this, 'Balanced &amp; Encouraging')">
+<div>
+<span class="font-label-lg text-label-lg font-bold text-primary-container">Balanced &amp; Encouraging</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Data-driven, actionable, and warmly proactive.</p>
+</div>
+<span class="material-symbols-outlined text-primary-container text-lg tone-check" data-weight="fill">check_circle</span>
+</div>
+<div class="tone-card p-3 rounded-xl border border-outline-variant/40 bg-surface-container-lowest cursor-pointer flex items-center justify-between" onclick="selectTone(this, 'Strict Discipline &amp; Performance')">
+<div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Strict &amp; High-Performance</span>
+<p class="font-body-sm text-body-sm text-outline">Direct accountability, no excuses, rigorous milestones.</p>
+</div>
+<span class="material-symbols-outlined text-transparent text-lg tone-check">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-5">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="triggerPlanGeneration()">
+<span class="material-symbols-outlined text-lg" data-weight="fill">auto_awesome</span>
+<span class="">Synthesize My Health Protocol</span>
+</button>
+</div>
+</section>
+<!-- ==================== GENERATING PLAN (ANIMATED STATE) ==================== -->
+<section class="flow-view hidden flex flex-col px-6 pt-10 pb-8 flex-1 items-center justify-center text-center" id="view-generating">
+<!-- Ambient Orb Animation -->
+<div class="relative w-36 h-36 mb-6 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full bg-primary-fixed/40 animate-ping opacity-60"></div>
+<div class="absolute inset-2 rounded-full border-4 border-primary/20 border-t-primary animate-spin"></div>
+<div class="w-24 h-24 rounded-full bg-primary-container text-on-primary flex items-center justify-center custom-shadow-float">
+<span class="material-symbols-outlined text-4xl animate-pulse" data-weight="fill">psychology</span>
+</div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface mb-1">
+        Generating Your Protocol
+      </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-8">BealthAI's neural clinical engine is structuring your hyper-individualized daily trajectory.</p>
+<!-- Checklist of Milestones -->
+<div class="w-full max-w-xs space-y-3 text-left">
+<div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-lowest border border-primary/15 transition-all" id="genStep1">
+<span class="material-symbols-outlined text-primary-container text-xl" data-weight="fill">check_circle</span>
+<span class="font-label-md text-label-md text-on-surface">Understanding your metabolic targets</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-lowest border border-primary/15 transition-all" id="genStep2">
+<span class="material-symbols-outlined text-primary-container text-xl" data-weight="fill">check_circle</span>
+<span class="font-label-md text-label-md text-on-surface">Calibrating Mediterranean meal matrices</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-lowest border border-primary/15 transition-all" id="genStep3">
+<span class="material-symbols-outlined text-primary-container text-xl animate-spin" id="iconStep3">progress_activity</span>
+<span class="font-label-md text-label-md text-on-surface">Building 25-min home dumbbell split</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 opacity-60 transition-all" id="genStep4">
+<span class="material-symbols-outlined text-outline text-xl" id="iconStep4">radio_button_unchecked</span>
+<span class="font-label-md text-label-md text-outline">Finalizing AI Coach daily dashboard</span>
+</div>
+</div>
+</section>
+<!-- ==================== COMPLETION / READY SCREEN ==================== -->
+<section class="flow-view hidden flex flex-col px-5 pt-6 pb-8 flex-1 justify-between" id="view-ready">
+<div class="flex flex-col items-center text-center">
+<!-- Success Badge -->
+<div class="w-20 h-20 rounded-full bg-primary-fixed/40 text-primary-container flex items-center justify-center mb-4 custom-shadow-float border border-primary/20">
+<span class="material-symbols-outlined text-4xl" data-weight="fill">task_alt</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-widest">Protocol Active</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1 mb-1">
+          You're All Set, Alex!
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-5">
+          Your personal health plan and biometric dashboard have been initialized.
+        </p>
+<!-- Preview of generated daily plan card -->
+<div class="w-full bg-surface-container-lowest rounded-3xl p-5 border border-primary/15 custom-shadow-soft text-left space-y-4">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Today's Blueprint</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline">Day 1 / Phase 1</span>
+</div>
+<!-- Target highlights -->
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-surface-container-low p-2.5 rounded-2xl text-center">
+<span class="material-symbols-outlined text-primary-container text-base mb-0.5">local_fire_department</span>
+<div class="font-label-caps text-label-caps text-outline">CALORIES</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">1,820</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-2xl text-center">
+<span class="material-symbols-outlined text-secondary text-base mb-0.5">egg_alt</span>
+<div class="font-label-caps text-label-caps text-outline">PROTEIN</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">120g</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-2xl text-center">
+<span class="material-symbols-outlined text-tertiary text-base mb-0.5">fitness_center</span>
+<div class="font-label-caps text-label-caps text-outline">MOVE</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">25m</div>
+</div>
+</div>
+<!-- Coach First Greeting Inbound Bubble -->
+<div class="p-3.5 rounded-2xl rounded-bl-sm bg-[#F0FDF9] border border-primary/20 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary-container text-xl mt-0.5" data-weight="fill">smart_toy</span>
+<div>
+<p class="font-label-md text-label-md text-primary-container font-bold">BealthAI (AI Coach)</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+                "Welcome aboard! I’ve scheduled a light upper-body mobility session for this evening. Have you logged your first glass of water?"
+              </p>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full space-y-2 pt-5">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-transform active:scale-95 flex items-center justify-center gap-2" onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'">
+<span class="">Go to Dashboard</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="w-full py-2.5 text-center font-label-md text-label-md text-outline hover:text-primary transition-colors" onclick="switchStep('welcome')">
+          Restart Walkthrough
+        </button>
+</div>
+</section>
+</main>
+<!-- Interactive State Controller & Helpers Script -->
+<script>
+    // State Tracker
+    const stepOrder = [
+      'welcome',
+      'auth',
+      'step1',
+      'step2',
+      'step3',
+      'step4',
+      'step5',
+      'step6',
+      'step7',
+      'step8',
+      'step9',
+      'generating',
+      'ready'
+    ];
+
+    let currentStepKey = 'welcome';
+    let isSignInMode = false;
+
+    function updateProgressBar(stepKey) {
+      const container = document.getElementById('stepperProgressBarContainer');
+      const fill = document.getElementById('stepperProgressBarFill');
+      const counter = document.getElementById('stepCounterLabel');
+
+      if (stepKey.startsWith('step')) {
+        container.classList.remove('hidden');
+        const num = parseInt(stepKey.replace('step', ''), 10);
+        counter.textContent = `Step ${num} of 9`;
+        fill.style.width = `${Math.round((num / 9) * 100)}%`;
+      } else {
+        container.classList.add('hidden');
+      }
+    }
+
+    function switchStep(targetKey, forceSignIn = false) {
+      currentStepKey = targetKey;
+      
+      // Update dropdown selector value
+      const selector = document.getElementById('flowSelector');
+      if (selector) selector.value = targetKey;
+
+      // Hide all flow views
+      document.querySelectorAll('.flow-view').forEach(view => {
+        view.classList.add('hidden');
+      });
+
+      // Show targeted view
+      const targetView = document.getElementById(`view-${targetKey}`);
+      if (targetView) {
+        targetView.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Handle Auth toggle state if specified
+      if (targetKey === 'auth' && forceSignIn) {
+        setAuthMode(true);
+      } else if (targetKey === 'auth' && !forceSignIn) {
+        setAuthMode(false);
+      }
+
+      updateProgressBar(targetKey);
+    }
+
+    function goPreviousStep() {
+      const idx = stepOrder.indexOf(currentStepKey);
+      if (idx > 0) {
+        switchStep(stepOrder[idx - 1]);
+      }
+    }
+
+    // Auth Mode Toggling
+    function setAuthMode(signIn) {
+      isSignInMode = signIn;
+      const title = document.getElementById('authTitle');
+      const subtitle = document.getElementById('authSubtitle');
+      const submitText = document.getElementById('authSubmitText');
+      const nameContainer = document.getElementById('nameFieldContainer');
+      const toggleQuestion = document.getElementById('authToggleQuestion');
+      const toggleBtn = document.getElementById('authToggleBtn');
+
+      if (isSignInMode) {
+        title.textContent = 'Welcome back';
+        subtitle.textContent = 'Sign in to access your vitals and daily coaching plan.';
+        submitText.textContent = 'Sign In to Dashboard';
+        nameContainer.classList.add('hidden');
+        toggleQuestion.textContent = "Don't have an account?";
+        toggleBtn.textContent = 'Sign Up';
+      } else {
+        title.textContent = 'Create your account';
+        subtitle.textContent = 'Begin your biometric calibration and health partnership today.';
+        submitText.textContent = 'Continue to Health Calibration';
+        nameContainer.classList.remove('hidden');
+        toggleQuestion.textContent = 'Already registered?';
+        toggleBtn.textContent = 'Sign In';
+      }
+    }
+
+    function toggleAuthMode() {
+      setAuthMode(!isSignInMode);
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      if (isSignInMode) {
+        // Direct jump to ready or step 1
+        switchStep('ready');
+      } else {
+        switchStep('step1');
+      }
+    }
+
+    function simulateSocialAuth(provider) {
+      alert(`Authenticating seamlessly with ${provider}...`);
+      switchStep('step1');
+    }
+
+    function togglePasswordVisibility() {
+      const pwd = document.getElementById('authPassword');
+      const eye = document.getElementById('pwdEyeIcon');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        eye.textContent = 'visibility_off';
+      } else {
+        pwd.type = 'password';
+        eye.textContent = 'visibility';
+      }
+    }
+
+    // Step 1: Basic Info
+    function updateAge(val) {
+      document.getElementById('ageDisplay').textContent = `${val} yrs`;
+    }
+
+    function selectGender(el, gender) {
+      document.querySelectorAll('.gender-btn').forEach(btn => {
+        btn.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+        btn.classList.add('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+        const icon = btn.querySelector('.check-icon');
+        if (icon) {
+          icon.classList.remove('text-primary-container');
+          icon.classList.add('text-transparent');
+          icon.removeAttribute('data-weight');
+        }
+      });
+      el.classList.remove('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+      const activeIcon = el.querySelector('.check-icon');
+      if (activeIcon) {
+        activeIcon.classList.remove('text-transparent');
+        activeIcon.classList.add('text-primary-container');
+        activeIcon.setAttribute('data-weight', 'fill');
+      }
+    }
+
+    // Step 2: Body Metrics
+    let heightUnit = 'cm';
+    let weightUnit = 'kg';
+
+    function toggleHeightUnit(unit) {
+      heightUnit = unit;
+      const btnCm = document.getElementById('unitCm');
+      const btnFt = document.getElementById('unitFt');
+      const display = document.getElementById('heightValueDisplay');
+      const unitDisplay = document.getElementById('heightUnitDisplay');
+      const slider = document.getElementById('heightSlider');
+
+      if (unit === 'cm') {
+        btnCm.className = 'px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary font-bold';
+        btnFt.className = 'px-2.5 py-0.5 rounded-full text-on-surface-variant';
+        slider.min = "130";
+        slider.max = "220";
+        slider.value = "165";
+        display.textContent = '165';
+        unitDisplay.textContent = 'cm';
+      } else {
+        btnFt.className = 'px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary font-bold';
+        btnCm.className = 'px-2.5 py-0.5 rounded-full text-on-surface-variant';
+        slider.min = "4.5";
+        slider.max = "7.2";
+        slider.step = "0.1";
+        slider.value = "5.5";
+        display.textContent = "5'5\"";
+        unitDisplay.textContent = 'ft';
+      }
+    }
+
+    function updateHeight(val) {
+      const display = document.getElementById('heightValueDisplay');
+      if (heightUnit === 'cm') {
+        display.textContent = val;
+      } else {
+        const ft = Math.floor(val);
+        const inches = Math.round((val - ft) * 12);
+        display.textContent = `${ft}'${inches}"`;
+      }
+    }
+
+    function toggleWeightUnit(unit) {
+      weightUnit = unit;
+      const btnKg = document.getElementById('unitKg');
+      const btnLb = document.getElementById('unitLb');
+      const display = document.getElementById('weightValueDisplay');
+      const unitDisplay = document.getElementById('weightUnitDisplay');
+      const slider = document.getElementById('weightSlider');
+
+      if (unit === 'kg') {
+        btnKg.className = 'px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary font-bold';
+        btnLb.className = 'px-2.5 py-0.5 rounded-full text-on-surface-variant';
+        slider.min = "40";
+        slider.max = "150";
+        slider.step = "0.5";
+        slider.value = "72";
+        display.textContent = '72.0';
+        unitDisplay.textContent = 'kg';
+      } else {
+        btnLb.className = 'px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary font-bold';
+        btnKg.className = 'px-2.5 py-0.5 rounded-full text-on-surface-variant';
+        slider.min = "90";
+        slider.max = "330";
+        slider.step = "1";
+        slider.value = "158";
+        display.textContent = '158';
+        unitDisplay.textContent = 'lb';
+      }
+    }
+
+    function updateWeight(val) {
+      document.getElementById('weightValueDisplay').textContent = val;
+    }
+
+    // Step 3: Goals
+    function selectGoalCard(el, goalName) {
+      document.querySelectorAll('#goalsList .goal-item').forEach(card => {
+        card.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20', 'custom-shadow-soft');
+        card.classList.add('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+        const icon = card.querySelector('.goal-icon');
+        icon.classList.remove('text-primary-container');
+        icon.classList.add('text-transparent');
+        icon.removeAttribute('data-weight');
+      });
+
+      el.classList.remove('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20', 'custom-shadow-soft');
+      const activeIcon = el.querySelector('.goal-icon');
+      activeIcon.classList.remove('text-transparent');
+      activeIcon.classList.add('text-primary-container');
+      activeIcon.setAttribute('data-weight', 'fill');
+    }
+
+    // Step 4: Activity Level
+    function selectActivityCard(el, level) {
+      document.querySelectorAll('#activityCardsContainer .act-card').forEach(card => {
+        card.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20', 'custom-shadow-soft');
+        card.classList.add('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      });
+      el.classList.remove('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20', 'custom-shadow-soft');
+    }
+
+    // Step 5: Diet Selection
+    function selectDiet(el, dietName) {
+      document.querySelectorAll('#dietGrid .diet-btn').forEach(btn => {
+        btn.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+        btn.classList.add('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      });
+      el.classList.remove('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+    }
+
+    // Tag chip toggle helper (Allergies, Cuisines, Equipment)
+    function toggleTag(el) {
+      const isSelected = el.classList.contains('active');
+      if (isSelected) {
+        el.classList.remove('active', 'bg-primary-container', 'text-on-primary');
+        el.classList.add('bg-surface-container-lowest', 'border', 'border-outline-variant/40', 'text-on-surface-variant');
+        const check = el.querySelector('.material-symbols-outlined');
+        if (check) check.remove();
+      } else {
+        el.classList.add('active', 'bg-primary-container', 'text-on-primary');
+        el.classList.remove('bg-surface-container-lowest', 'border', 'border-outline-variant/40', 'text-on-surface-variant');
+        const check = document.createElement('span');
+        check.className = 'material-symbols-outlined text-xs';
+        check.textContent = 'check';
+        el.appendChild(check);
+      }
+    }
+
+    // Meal Frequency
+    function selectMealFreq(el, freq) {
+      document.querySelectorAll('.meal-opt').forEach(btn => {
+        btn.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20', 'font-bold', 'text-primary-container');
+        btn.classList.add('border', 'border-outline-variant/40', 'text-on-surface');
+      });
+      el.classList.remove('border', 'border-outline-variant/40', 'text-on-surface');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20', 'font-bold', 'text-primary-container');
+      document.getElementById('mealFreqLabel').textContent = freq;
+    }
+
+    // Step 7: Routine Time Slots
+    function selectTimeSlot(el, slot) {
+      document.querySelectorAll('#workoutTimeGrid .time-slot-btn').forEach(btn => {
+        btn.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+        btn.classList.add('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      });
+      el.classList.remove('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+    }
+
+    // Step 8: Workout Preferences
+    function selectEnv(el, env) {
+      document.querySelectorAll('#envGrid .env-btn').forEach(btn => {
+        btn.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+        btn.classList.add('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      });
+      el.classList.remove('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+    }
+
+    function selectDuration(el, dur) {
+      document.querySelectorAll('.dur-btn').forEach(btn => {
+        btn.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20', 'font-bold', 'text-primary-container');
+        btn.classList.add('border', 'border-outline-variant/40', 'text-on-surface');
+      });
+      el.classList.remove('border', 'border-outline-variant/40', 'text-on-surface');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20', 'font-bold', 'text-primary-container');
+      document.getElementById('durationLabel').textContent = dur;
+    }
+
+    // Step 9: Coach Tone
+    function selectTone(el, tone) {
+      document.querySelectorAll('#coachToneGroup .tone-card').forEach(card => {
+        card.classList.remove('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+        card.classList.add('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+        const icon = card.querySelector('.tone-check');
+        icon.classList.remove('text-primary-container');
+        icon.classList.add('text-transparent');
+        icon.removeAttribute('data-weight');
+      });
+      el.classList.remove('border', 'border-outline-variant/40', 'bg-surface-container-lowest');
+      el.classList.add('border-2', 'border-primary-container', 'bg-primary-fixed/20');
+      const activeIcon = el.querySelector('.tone-check');
+      activeIcon.classList.remove('text-transparent');
+      activeIcon.classList.add('text-primary-container');
+      activeIcon.setAttribute('data-weight', 'fill');
+    }
+
+    // Plan Generation Simulation
+    function triggerPlanGeneration() {
+      switchStep('generating');
+
+      // Milestone animation sequence
+      setTimeout(() => {
+        const step3Icon = document.getElementById('iconStep3');
+        if (step3Icon) {
+          step3Icon.className = 'material-symbols-outlined text-primary-container text-xl';
+          step3Icon.setAttribute('data-weight', 'fill');
+          step3Icon.textContent = 'check_circle';
+        }
+        const step4 = document.getElementById('genStep4');
+        const step4Icon = document.getElementById('iconStep4');
+        if (step4 && step4Icon) {
+          step4.classList.remove('opacity-60', 'bg-surface-container-low');
+          step4.classList.add('bg-surface-container-lowest', 'border-primary/15');
+          step4Icon.className = 'material-symbols-outlined text-primary-container text-xl animate-spin';
+          step4Icon.textContent = 'progress_activity';
+        }
+      }, 1200);
+
+      setTimeout(() => {
+        switchStep('ready');
+      }, 2600);
+    }
+  </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BealthAI Fitness &amp; Activity Hub</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts for Design Tokens -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#ffdbca",
+            "surface-tint": "#006a63",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e2e7ff",
+            "on-tertiary-fixed": "#001d31",
+            "outline-variant": "#bdc9c6",
+            "outline": "#6e7977",
+            "tertiary-fixed": "#cce5ff",
+            "inverse-primary": "#80d5cb",
+            "primary-fixed": "#9cf2e8",
+            "on-tertiary-fixed-variant": "#004b73",
+            "error-container": "#ffdad6",
+            "on-primary-container": "#a3faef",
+            "surface-container-highest": "#dae2fd",
+            "surface-bright": "#faf8ff",
+            "on-primary": "#ffffff",
+            "secondary-fixed-dim": "#ffb690",
+            "on-tertiary-container": "#dbecff",
+            "on-secondary-container": "#5c2400",
+            "tertiary-fixed-dim": "#93ccff",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "on-surface-variant": "#3e4947",
+            "primary-container": "#0f766e",
+            "surface-variant": "#dae2fd",
+            "surface-container": "#eaedff",
+            "error": "#ba1a1a",
+            "inverse-on-surface": "#eef0ff",
+            "inverse-surface": "#283044",
+            "primary": "#005c55",
+            "primary-fixed-dim": "#80d5cb",
+            "secondary": "#9d4300",
+            "on-surface": "#131b2e",
+            "surface-container-low": "#f2f3ff",
+            "on-background": "#131b2e",
+            "surface-dim": "#d2d9f4",
+            "tertiary": "#005683",
+            "surface": "#faf8ff",
+            "background": "#faf8ff",
+            "on-secondary-fixed-variant": "#783200",
+            "on-primary-fixed-variant": "#00504a",
+            "secondary-container": "#fd761a",
+            "on-primary-fixed": "#00201d",
+            "tertiary-container": "#006fa8",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed": "#341100"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "space-xl": "2rem",
+            "margin-tablet": "2rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "gutter-desktop": "2rem",
+            "margin": "1rem",
+            "gutter-tablet": "1.5rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "title-metric-mobile": ["Plus Jakarta Sans"],
+            "display-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "title-metric": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "label-caps": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"]
+          },
+          "fontSize": {
+            "title-metric-mobile": ["26px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "title-metric": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom utility extensions adhering to Design System */
+    .card-shadow {
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+    }
+    .card-hover-shadow {
+      box-shadow: 0 12px 32px -4px rgba(15, 118, 110, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex justify-center selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- Mobile Device Simulation Frame (~390px - 420px maximum viewport) -->
+<div class="w-full max-w-[420px] bg-surface min-h-screen pb-28 relative flex flex-col shadow-2xl border-x border-outline-variant/10">
+<!-- TOP APP BAR -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md docked full-width top-0 sticky z-40 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-margin py-space-sm">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-headline-sm font-headline-sm text-on-surface font-extrabold tracking-tight">Fitness</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed/40 text-primary text-label-caps font-label-caps">
+                Mon, Sep 15
+              </span>
+</div>
+<p class="text-label-md font-label-md text-on-surface-variant font-normal">Move better. Get stronger. Stay consistent.</p>
+</div>
+</div>
+<!-- Trailing Avatar & Profile Target -->
+<button class="relative w-9 h-9 rounded-full ring-2 ring-primary/20 overflow-hidden active:scale-95 transition-transform" onclick="window.location.href='{{DATA:SCREEN:SCREEN_8}}'">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a vibrant, healthy athletic woman smiling warmly in modern studio ambient lighting with soft emerald and gentle cream backdrops, high key and serene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRR9qtzxNLsIa9xlDS8cK6FVZjekIW1WAUlX-ZaEnCUfa9jlwDPTkMq3Cfrc10Dn6Z4twgJxogZmEt2Shfi_mgrJPS_SpJ5mt5iyTLil5Wk5JakPcpfEJFRCpBlQChQcyQv4INbr_QqXZO9h02LHPm46-b-2J8-k3gRYYEU-_VKoK8WE2AuWGQ6rBnWaAelw8ukDFzfi7dFB1oF5r4QZQ6WR-qPB626gLHgSF_ZGTJjVrpqfC5mIBW0w">
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary-container rounded-full ring-2 ring-surface"></span>
+</button>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT -->
+<main class="flex-1 px-margin pt-space-sm space-y-space-xl">
+<!-- SECTION 1: TODAY'S ACTIVITY SUMMARY CARD -->
+<section class="bg-surface-container-lowest card-shadow rounded-2xl p-space-md border border-primary-container/10 relative overflow-hidden">
+<div class="flex justify-between items-center mb-3">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="text-label-caps font-label-caps text-on-surface-variant tracking-wider">TODAY'S ACTIVITY</span>
+</div>
+<a class="text-label-md font-label-md text-primary font-semibold hover:underline flex items-center" href="#">
+            View Activity
+            <span class="material-symbols-outlined text-[16px] ml-0.5" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+<!-- Hero Metric & Circular Ring Gauge -->
+<div class="flex items-center justify-between py-1">
+<div>
+<span class="text-label-md font-label-md text-on-surface-variant">Daily Step Goal</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="text-title-metric-mobile font-title-metric-mobile text-on-surface font-extrabold">6,842</span>
+<span class="text-label-md font-label-md text-outline">/ 8,000</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1.5">
+<span class="inline-flex items-center text-label-caps font-label-caps px-2 py-0.5 rounded-full bg-primary-fixed/50 text-primary">
+                85% of target
+              </span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">1,158 to go</span>
+</div>
+</div>
+<!-- Circular SVG Gauge -->
+<div class="relative w-20 h-20 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 72 72">
+<!-- Track background -->
+<circle cx="36" cy="36" fill="transparent" r="28" stroke="#F1F5F3" stroke-width="7"></circle>
+<!-- Progress ring (85% of 175.93 circumference = ~149.5) -->
+<circle cx="36" cy="36" fill="transparent" r="28" stroke="#0F766E" stroke-dasharray="175.93" stroke-dashoffset="26.39" stroke-linecap="round" stroke-width="7"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="directions_walk">directions_walk</span>
+</div>
+</div>
+</div>
+<!-- Metric Cards Row -->
+<div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-surface-container">
+<div class="p-2.5 rounded-xl bg-surface-container-low/60 flex flex-col">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="local_fire_department">local_fire_department</span>
+<span class="text-label-caps font-label-caps">ACTIVE</span>
+</div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface mt-1">42 <span class="text-label-md font-label-md font-normal text-outline">/60m</span></span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low/60 flex flex-col">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" data-icon="bolt">bolt</span>
+<span class="text-label-caps font-label-caps">ENERGY</span>
+</div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface mt-1">284 <span class="text-label-md font-label-md font-normal text-outline">kcal</span></span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low/60 flex flex-col">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="emoji_events">emoji_events</span>
+<span class="text-label-caps font-label-caps">WORKOUT</span>
+</div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface mt-1">1 <span class="text-label-md font-label-md font-normal text-outline">done</span></span>
+</div>
+</div>
+</section>
+<!-- SECTION 2: TODAY'S FEATURED WORKOUT (PRIMARY HERO CTA) -->
+<section class="bg-surface-container-lowest card-shadow rounded-3xl p-space-md border border-primary-container/10 relative overflow-hidden">
+<div class="flex items-center justify-between mb-2.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed/50 text-primary text-label-md font-label-md font-semibold">
+<span class="material-symbols-outlined text-[15px]" data-icon="smart_toy">smart_toy</span>
+            AI Personalized for You
+          </span>
+<span class="text-label-caps font-label-caps text-outline bg-surface-container-low px-2 py-0.5 rounded-md">DAILY PICK</span>
+</div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-bold tracking-tight">
+          Full Body Functional Strength
+        </h2>
+<!-- Metadata Pills Cluster -->
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-low text-on-surface-variant text-label-caps font-label-caps">
+<span class="material-symbols-outlined text-[13px] mr-1 text-outline" data-icon="schedule">schedule</span>25 min
+          </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-low text-on-surface-variant text-label-caps font-label-caps">
+<span class="material-symbols-outlined text-[13px] mr-1 text-secondary-container" data-icon="speed">speed</span>Moderate Intensity
+          </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-low text-on-surface-variant text-label-caps font-label-caps">
+<span class="material-symbols-outlined text-[13px] mr-1 text-outline" data-icon="fitness_center">fitness_center</span>8 Exercises
+          </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-low text-on-surface-variant text-label-caps font-label-caps">
+            ~180 kcal est.
+          </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed/30 text-primary text-label-caps font-label-caps">
+            No Equipment
+          </span>
+</div>
+<!-- Athlete In Motion Visual Showcase -->
+<div class="relative w-full h-40 rounded-2xl overflow-hidden mt-3.5 mb-3 group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An athletic individual engaged in functional movement in an airy, sun-drenched modern architectural studio with neutral slate tones, floor-to-ceiling glass, polished concrete, and natural warm accents, exuding serene physical vitality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSneDeTkeJNGD7ytmSswRaLVnyMtCiuafPTMrqZOsPkJlV0HBvzFPqnuJ3mFInG7nj7YiQjKiNmnRa1zrF_xZRpo4g274ffHIrev5IRiUECGDzAwjLxpAQSl91pyOMWy1tKDr2bdZW4bL_ihOtG1ewe_NpoJar-lT_UtQ_MLejEPlkMhQGW5VkLUO6P-7sSrG3enakSiEa4Rwa0uScK6HCTGAMmgMxFMfroOwP7G_DAWLKZBKl7iprew">
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/75 via-transparent to-transparent"></div>
+<div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-on-primary">
+<span class="text-label-md font-label-md font-medium text-white/90">Curated with Movement Science</span>
+<span class="material-symbols-outlined text-[20px] text-primary-fixed" data-icon="verified">verified</span>
+</div>
+</div>
+<!-- AI Reasoning Note -->
+<div class="rounded-xl bg-primary-fixed/20 p-2.5 border border-primary-fixed/40 flex items-start gap-2 mb-3.5">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5" data-icon="tips_and_updates">tips_and_updates</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-snug">
+            Designed around your current consistency goal and 30-minute evening recovery window.
+          </p>
+</div>
+<!-- Action CTAs -->
+<div class="flex items-center gap-2">
+<button class="flex-1 py-3 px-4 rounded-full bg-primary-container text-on-primary text-label-lg font-label-lg font-semibold flex items-center justify-center gap-1.5 shadow-md shadow-primary-container/20 active:scale-[0.98] transition-transform" onclick="window.location.href='{{DATA:SCREEN:SCREEN_10}}'">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            Start Workout
+          </button>
+<button class="py-3 px-4 rounded-full bg-surface-container-low text-primary text-label-lg font-label-lg font-semibold hover:bg-surface-container-high transition-colors active:scale-95">
+            View Details
+          </button>
+</div>
+</section>
+<!-- SECTION 3: QUICK ACTION GRID (2x2) -->
+<section>
+<div class="flex items-center justify-between mb-2.5">
+<span class="text-label-caps font-label-caps text-on-surface-variant tracking-wider">QUICK ACTIONS</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Action 1 -->
+<button class="p-3 bg-surface-container-lowest rounded-2xl card-shadow border border-primary-container/10 flex items-center gap-3 text-left active:scale-95 transition-all hover:border-primary/30" onclick="window.location.href='{{DATA:SCREEN:SCREEN_10}}'">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/40 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="fitness_center">fitness_center</span>
+</div>
+<div>
+<span class="text-label-md font-label-md font-bold text-on-surface block">Start Workout</span>
+<span class="text-body-sm font-body-sm text-outline text-[11px] block">Quick timer</span>
+</div>
+</button>
+<!-- Action 2 -->
+<button class="p-3 bg-surface-container-lowest rounded-2xl card-shadow border border-primary-container/10 flex items-center gap-3 text-left active:scale-95 transition-all hover:border-primary/30">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed/50 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="edit_calendar">edit_calendar</span>
+</div>
+<div>
+<span class="text-label-md font-label-md font-bold text-on-surface block">Log Activity</span>
+<span class="text-body-sm font-body-sm text-outline text-[11px] block">Manual entry</span>
+</div>
+</button>
+<!-- Action 3 -->
+<button class="p-3 bg-surface-container-lowest rounded-2xl card-shadow border border-primary-container/10 flex items-center gap-3 text-left active:scale-95 transition-all hover:border-primary/30">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed/50 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="menu_book">menu_book</span>
+</div>
+<div>
+<span class="text-label-md font-label-md font-bold text-on-surface block">Browse Library</span>
+<span class="text-body-sm font-body-sm text-outline text-[11px] block">350+ exercises</span>
+</div>
+</button>
+<!-- Action 4 -->
+<button class="p-3 bg-surface-container-lowest rounded-2xl card-shadow border border-primary-container/10 flex items-center gap-3 text-left active:scale-95 transition-all hover:border-primary/30">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="monitoring">monitoring</span>
+</div>
+<div>
+<span class="text-label-md font-label-md font-bold text-on-surface block">View Progress</span>
+<span class="text-body-sm font-body-sm text-outline text-[11px] block">Trends &amp; records</span>
+</div>
+</button>
+</div>
+</section>
+<!-- SECTION 4: WEEKLY ACTIVITY & CONSISTENCY CHART ("THIS WEEK") -->
+<section class="bg-surface-container-lowest card-shadow rounded-2xl p-space-md border border-primary-container/10">
+<div class="flex justify-between items-center mb-3">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">This Week</h3>
+<p class="text-label-md font-label-md text-on-surface-variant">Consistent movement streak</p>
+</div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-primary-container text-on-primary text-label-md font-label-md font-semibold">
+            4 / 5 Workouts
+          </span>
+</div>
+<!-- 7-Day Bar Chart Graphic -->
+<div class="flex items-end justify-between gap-2 h-28 pt-2 pb-1 px-1">
+<!-- Mon (Completed) -->
+<div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+<div class="w-full bg-primary-container rounded-t-lg h-[80%] transition-all"></div>
+<span class="text-label-caps font-label-caps text-on-surface font-bold">Mon</span>
+</div>
+<!-- Tue (Completed - Yesterday) -->
+<div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+<div class="w-full bg-primary-container rounded-t-lg h-[65%] transition-all"></div>
+<span class="text-label-caps font-label-caps text-on-surface font-bold">Tue</span>
+</div>
+<!-- Wed (Completed - Today active highlight) -->
+<div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end relative">
+<div class="absolute -top-1 w-2 h-2 rounded-full bg-secondary-container"></div>
+<div class="w-full bg-primary rounded-t-lg h-[92%] ring-2 ring-primary-fixed"></div>
+<span class="text-label-caps font-label-caps text-primary font-bold">Wed</span>
+</div>
+<!-- Thu (Planned/Done) -->
+<div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+<div class="w-full bg-primary-container/80 rounded-t-lg h-[50%] transition-all"></div>
+<span class="text-label-caps font-label-caps text-on-surface">Thu</span>
+</div>
+<!-- Fri (Rest / Pending) -->
+<div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+<div class="w-full bg-surface-muted bg-surface-container rounded-t-lg h-[15%] flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+</div>
+<span class="text-label-caps font-label-caps text-outline">Fri</span>
+</div>
+<!-- Sat (Scheduled) -->
+<div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+<div class="w-full bg-surface-container rounded-t-lg h-[15%] flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+</div>
+<span class="text-label-caps font-label-caps text-outline">Sat</span>
+</div>
+<!-- Sun (Rest) -->
+<div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+<div class="w-full bg-surface-container rounded-t-lg h-[15%] flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+</div>
+<span class="text-label-caps font-label-caps text-outline">Sun</span>
+</div>
+</div>
+<!-- Weekly Aggregates -->
+<div class="grid grid-cols-3 gap-2 py-2.5 mt-2 border-t border-surface-container text-center">
+<div>
+<span class="text-label-caps font-label-caps text-outline">ACTIVE TIME</span>
+<p class="text-label-lg font-label-lg font-bold text-on-surface mt-0.5">186 mins</p>
+</div>
+<div>
+<span class="text-label-caps font-label-caps text-outline">TOTAL STEPS</span>
+<p class="text-label-lg font-label-lg font-bold text-on-surface mt-0.5">42,850</p>
+</div>
+<div>
+<span class="text-label-caps font-label-caps text-outline">CALORIES</span>
+<p class="text-label-lg font-label-lg font-bold text-on-surface mt-0.5">1,420 kcal</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-primary text-body-sm font-body-sm font-medium mt-1 bg-primary-fixed/20 p-2 rounded-xl">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          You're on track to hit your weekly consistency goal!
+        </div>
+</section>
+<!-- SECTION 5: AI COACH FITNESS INSIGHT -->
+<section class="bg-gradient-to-br from-primary-fixed/30 to-surface-container-low rounded-2xl p-space-md border border-primary-container/20 relative">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-2xl rounded-bl-sm bg-primary-container text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="text-label-caps font-label-caps text-primary uppercase">Coach Insight</span>
+<span class="material-symbols-outlined text-secondary text-[14px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface leading-relaxed">
+              "You've been remarkably consistent this week! Today, a 25-minute full-body session balances yesterday's cardio recovery."
+            </p>
+<div class="mt-2.5 flex justify-end">
+<button class="inline-flex items-center gap-1 text-label-md font-label-md font-bold text-primary hover:text-surface-tint active:scale-95 transition-transform" onclick="window.location.href='{{DATA:SCREEN:SCREEN_11}}'">
+                Ask Coach
+                <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: RECOMMENDED WORKOUTS CAROUSEL / LIST -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Recommended For You</h3>
+<p class="text-label-md font-label-md text-on-surface-variant">Tailored to your current recovery level</p>
+</div>
+<button class="text-label-md font-label-md text-primary font-semibold hover:underline">See all</button>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar py-0.5">
+<button class="px-3 py-1 rounded-full bg-primary-container text-on-primary text-label-md font-label-md font-semibold shrink-0 shadow-sm">All</button>
+<button class="px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant text-label-md font-label-md shrink-0 hover:bg-surface-container">Strength</button>
+<button class="px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant text-label-md font-label-md shrink-0 hover:bg-surface-container">Cardio</button>
+<button class="px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant text-label-md font-label-md shrink-0 hover:bg-surface-container">HIIT</button>
+<button class="px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant text-label-md font-label-md shrink-0 hover:bg-surface-container">Mobility</button>
+</div>
+<!-- Workout Cards Stack -->
+<div class="space-y-2.5">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest card-shadow rounded-2xl p-3 border border-primary-container/10 flex items-center justify-between gap-3">
+<div class="w-16 h-16 rounded-xl overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Dynamic fitness athlete performing energetic outdoor cardio movements under bright daylight with sleek athletic apparel in a minimal park setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3Vi7d8bVhv2tZhuBsdWuUR2giMg93XNe3_zNB1z429zEM83CVI1U0eYB3P8ZZClzYh9Teb_Pk5o2XQ9HCHZR4ft1vYQ7vaXBsIi-oblGkBxwRLimUmXQQ6w5ZLHSYGFYtL78tHwevEPCpzhJyDRfw8O2neoAm3zLRVFmMyGC-ZZXE2gdQJItpAR9IvqnOZbNhOQ2R3EQU4xyIVJ7WC8MLII5JDdFZvDXTYzHfFD1S3UeRr_KSpvytCA">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="text-label-caps font-label-caps px-1.5 py-0.5 rounded bg-secondary-fixed/50 text-secondary">Cardio</span>
+<span class="text-label-caps font-label-caps text-outline">15 min • High</span>
+</div>
+<h4 class="text-label-lg font-label-lg font-bold text-on-surface truncate mt-0.5">Quick Cardio Burn</h4>
+<p class="text-body-sm font-body-sm text-outline truncate">6 exercises • No Equipment</p>
+</div>
+<button class="px-3 py-1.5 rounded-full bg-primary-fixed/40 text-primary font-bold text-label-md font-label-md hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95 shrink-0" onclick="window.location.href='{{DATA:SCREEN:SCREEN_10}}'">
+              Start
+            </button>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest card-shadow rounded-2xl p-3 border border-primary-container/10 flex items-center justify-between gap-3">
+<div class="w-16 h-16 rounded-xl overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Serene person practicing gentle spine and core mobility stretches on a natural yoga mat in a light-filled minimalist room with lush botanical plants." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNqCPos-RsVxkXFQwax-1mtK9aoKG8uuH9IQRKw6uxloVcJsjUvdQo8JXtz7hBKiF0L24IEquh5_NhdHlBnNQvPNWS46JiBTbZjJ4PhGbqZI2yK0y7ZZ0f-Q9bElh7gzpHH7jkwHVP0XIxNuJxnrB-IWmwNGbdKPYDCAhZba89s4AWKgN-XIJYXmOm487VFASfoemA5iZuS0-fcOZfpfTDqgN10-1xe0tc0sJazsD9UjXNRXUaOpcHrA">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="text-label-caps font-label-caps px-1.5 py-0.5 rounded bg-tertiary-fixed/50 text-tertiary">Mobility</span>
+<span class="text-label-caps font-label-caps text-outline">20 min • Gentle</span>
+</div>
+<h4 class="text-label-lg font-label-lg font-bold text-on-surface truncate mt-0.5">Core &amp; Spine Mobility</h4>
+<p class="text-body-sm font-body-sm text-outline truncate">7 exercises • Mat required</p>
+</div>
+<button class="px-3 py-1.5 rounded-full bg-primary-fixed/40 text-primary font-bold text-label-md font-label-md hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95 shrink-0" onclick="window.location.href='{{DATA:SCREEN:SCREEN_10}}'">
+              Start
+            </button>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest card-shadow rounded-2xl p-3 border border-primary-container/10 flex items-center justify-between gap-3">
+<div class="w-16 h-16 rounded-xl overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Dedicated fitness enthusiast performing gentle bodyweight squats in an airy living room environment with soft morning illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUrYrMlLMk2zzmFYhu5NAwcEXhaYk3P1imJuH410XUFZIqef0hwm2IUHXFnT72LTklGAbBJ_-pvaWKohZFygbYEOsvDHdxy0lEzszErfgXu78-ETXv7CUgEo1Q5uxhtAz65WQlzq9UX-_O7ppGk25h4vaTDW0WkV-4Lp88z69xUiAHKwm0CqkSiQzmVKzNPVAa2g-Z5t5EDhAjyhRRTaayFysvx6e5KJFSbA4VOkZr__ePy4JWFeawlg">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="text-label-caps font-label-caps px-1.5 py-0.5 rounded bg-primary-fixed/50 text-primary">Strength</span>
+<span class="text-label-caps font-label-caps text-outline">30 min • Easy</span>
+</div>
+<h4 class="text-label-lg font-label-lg font-bold text-on-surface truncate mt-0.5">Home Beginner Strength</h4>
+<p class="text-body-sm font-body-sm text-outline truncate">10 exercises • Bodyweight</p>
+</div>
+<button class="px-3 py-1.5 rounded-full bg-primary-fixed/40 text-primary font-bold text-label-md font-label-md hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95 shrink-0" onclick="window.location.href='{{DATA:SCREEN:SCREEN_10}}'">
+              Start
+            </button>
+</div>
+</div>
+</section>
+<!-- SECTION 7: EXERCISE CATEGORIES GRID -->
+<section>
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Exercise Categories</h3>
+<span class="text-label-caps font-label-caps text-outline">8 DISCIPLINES</span>
+</div>
+<div class="grid grid-cols-4 gap-2 text-center">
+<!-- Cat 1 -->
+<button class="p-2.5 rounded-2xl bg-surface-container-lowest card-shadow border border-primary-container/10 flex flex-col items-center gap-1.5 hover:border-primary/40 active:scale-95 transition-all">
+<div class="w-9 h-9 rounded-xl bg-primary-fixed/30 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="fitness_center">fitness_center</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">Strength</span>
+</button>
+<!-- Cat 2 -->
+<button class="p-2.5 rounded-2xl bg-surface-container-lowest card-shadow border border-primary-container/10 flex flex-col items-center gap-1.5 hover:border-primary/40 active:scale-95 transition-all">
+<div class="w-9 h-9 rounded-xl bg-secondary-fixed/50 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="directions_run">directions_run</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">Cardio</span>
+</button>
+<!-- Cat 3 -->
+<button class="p-2.5 rounded-2xl bg-surface-container-lowest card-shadow border border-primary-container/10 flex flex-col items-center gap-1.5 hover:border-primary/40 active:scale-95 transition-all">
+<div class="w-9 h-9 rounded-xl bg-tertiary-fixed/40 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="self_improvement">self_improvement</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">Mobility</span>
+</button>
+<!-- Cat 4 -->
+<button class="p-2.5 rounded-2xl bg-surface-container-lowest card-shadow border border-primary-container/10 flex flex-col items-center gap-1.5 hover:border-primary/40 active:scale-95 transition-all">
+<div class="w-9 h-9 rounded-xl bg-error-container/40 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="timer">timer</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">HIIT</span>
+</button>
+<!-- Cat 5 -->
+<button class="p-2.5 rounded-2xl bg-surface-container-lowest card-shadow border border-primary-container/10 flex flex-col items-center gap-1.5 hover:border-primary/40 active:scale-95 transition-all">
+<div class="w-9 h-9 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="stairs">stairs</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">Lower Body</span>
+</button>
+<!-- Cat 6 -->
+<button class="p-2.5 rounded-2xl bg-surface-container-lowest card-shadow border border-primary-container/10 flex flex-col items-center gap-1.5 hover:border-primary/40 active:scale-95 transition-all">
+<div class="w-9 h-9 rounded-xl bg-primary-fixed/30 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="shield">shield</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">Core</span>
+</button>
+<!-- Cat 7 -->
+<button class="p-2.5 rounded-2xl bg-surface-container-lowest card-shadow border border-primary-container/10 flex flex-col items-center gap-1.5 hover:border-primary/40 active:scale-95 transition-all">
+<div class="w-9 h-9 rounded-xl bg-secondary-fixed/50 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="spa">spa</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">Yoga</span>
+</button>
+<!-- Cat 8 -->
+<button class="p-2.5 rounded-2xl bg-surface-container-lowest card-shadow border border-primary-container/10 flex flex-col items-center gap-1.5 hover:border-primary/40 active:scale-95 transition-all">
+<div class="w-9 h-9 rounded-xl bg-tertiary-fixed/40 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="accessibility_new">accessibility_new</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">Stretching</span>
+</button>
+</div>
+</section>
+<!-- SECTION 8: WORKOUT HISTORY & RECENT MILESTONES -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Recent Workouts</h3>
+<span class="text-label-md font-label-md text-primary font-semibold cursor-pointer">History</span>
+</div>
+<div class="space-y-2">
+<!-- Item 1: Today -->
+<div class="bg-surface-container-lowest p-3 rounded-2xl card-shadow border border-primary-container/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary-fixed/50 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="done_all">done_all</span>
+</div>
+<div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface block">Full Body Strength</span>
+<span class="text-body-sm font-body-sm text-outline block">Today • 25 min • 182 kcal</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container/10 text-primary text-label-caps font-label-caps font-bold">
+              Completed
+            </span>
+</div>
+<!-- Item 2: Yesterday -->
+<div class="bg-surface-container-lowest p-3 rounded-2xl card-shadow border border-primary-container/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary-fixed/50 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="done_all">done_all</span>
+</div>
+<div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface block">Cardio Walk &amp; Intervals</span>
+<span class="text-body-sm font-body-sm text-outline block">Yesterday • 35 min • 210 kcal</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container/10 text-primary text-label-caps font-label-caps font-bold">
+              Completed
+            </span>
+</div>
+</div>
+<!-- Non-diagnostic disclaimer footer -->
+<div class="pt-4 pb-2 text-center">
+<div class="flex items-center justify-center gap-1 text-label-caps font-label-caps text-outline mb-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+            HIPAA-Grade Biometric Encryption Active
+          </div>
+<p class="text-body-sm font-body-sm text-outline text-[11px] max-w-xs mx-auto leading-tight">BealthAI recommendations are tailored for proactive wellness and longevity training. Not intended for diagnostic or clinical treatment.</p>
+</div>
+</section>
+</main>
+<!-- BOTTOM NAVIGATION BAR (Shared Component JSON Blueprint execution) -->
+<!-- Active State Logic: Screen is "Fitness" -> exact match index 2 ("Fitness") is active -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-sm bg-surface/90 dark:bg-surface/90 backdrop-blur-md shadow-lg dark:shadow-none border-none max-w-[420px] mx-auto right-0">
+<!-- Tab 1: Today -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-95 duration-150 py-1 px-2" onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'">
+<span class="material-symbols-outlined text-[24px]" data-icon="wb_sunny">wb_sunny</span>
+<span class="text-label-md font-label-md mt-0.5">Today</span>
+</button>
+<!-- Tab 2: Log -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-95 duration-150 py-1 px-2" onclick="window.location.href='{{DATA:SCREEN:SCREEN_9}}'">
+<span class="material-symbols-outlined text-[24px]" data-icon="edit_calendar">edit_calendar</span>
+<span class="text-label-md font-label-md mt-0.5">Log</span>
+</button>
+<!-- Tab 3: Fitness (ACTIVE TAB) -->
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold active:scale-95 duration-150 py-1 px-2 relative" onclick="window.location.href='{{DATA:SCREEN:SCREEN_6}}'">
+<div class="w-10 h-7 rounded-full bg-primary-fixed/40 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]" data-icon="vital_signs" data-weight="fill" style="font-variation-settings: 'FILL' 1;">vital_signs</span>
+</div>
+<span class="text-label-md font-label-md mt-0.5">Fitness</span>
+</button>
+<!-- Tab 4: Coach -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-95 duration-150 py-1 px-2" onclick="window.location.href='{{DATA:SCREEN:SCREEN_11}}'">
+<span class="material-symbols-outlined text-[24px]" data-icon="smart_toy">smart_toy</span>
+<span class="text-label-md font-label-md mt-0.5">Coach</span>
+</button>
+<!-- Tab 5: Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-95 duration-150 py-1 px-2" onclick="window.location.href='{{DATA:SCREEN:SCREEN_8}}'">
+<span class="material-symbols-outlined text-[24px]" data-icon="person">person</span>
+<span class="text-label-md font-label-md mt-0.5">Profile</span>
+</button>
+</nav>
+</div>
+
+
+
+
+</body></html>

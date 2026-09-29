@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-width: 320px;
+        background: #faf8ff;
+    }
+
+    button,
+    input,
+    select {
+        font: inherit;
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        line-height: 1;
+    }
+
+    .material-symbols-fill {
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+}
+
+@layer components {
+    .page-width {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    .section-label {
+        @apply font-body text-[11px] font-bold uppercase tracking-wider text-outline;
+    }
+}

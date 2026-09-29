@@ -1,0 +1,1747 @@
+<!DOCTYPE html><html lang="en" class="h-full"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BealthAI — Personal Onboarding Experience</title>
+  <!-- Tailwind CSS CDN with full typography & icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#0f766e', // Deep Emerald Teal from Vital Serenity
+              hover: '#115e59',
+              light: '#f0fdfa',
+              subtle: '#ccfbf1',
+              dark: '#134e4a'
+            },
+            accent: '#14b8a6',
+            surface: {
+              DEFAULT: '#f8fafc',
+              card: '#ffffff',
+              subtle: '#f1f5f9'
+            },
+            charcoal: {
+              900: '#0f172a',
+              700: '#334155',
+              500: '#64748b',
+              400: '#94a3b8'
+            }
+          },
+          boxShadow: {
+            'subtle': '0 4px 20px -2px rgba(15, 118, 110, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 12px 30px -4px rgba(15, 118, 110, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.04)',
+            'glow': '0 0 25px rgba(20, 184, 166, 0.35)',
+            'cta': '0 8px 24px -4px rgba(15, 118, 110, 0.35)'
+          },
+          animation: {
+            'float-gentle': 'float 4s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 2.5s ease-in-out infinite',
+            'spin-slow': 'spin 12s linear infinite',
+            'scale-pop': 'scalePop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+            'fade-slide-up': 'fadeSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'confetti-fall': 'confettiFall 3s ease-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' }
+            },
+            pulseSoft: {
+              '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+              '50%': { transform: 'scale(1.03)', opacity: '0.92' }
+            },
+            scalePop: {
+              '0%': { transform: 'scale(0.96)', opacity: '0.8' },
+              '100%': { transform: 'scale(1)', opacity: '1' }
+            },
+            fadeSlideUp: {
+              '0%': { opacity: '0', transform: 'translateY(12px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .material-symbols-rounded {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 450, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    /* Custom range and stepper tweaks */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background: #0f766e;
+      box-shadow: 0 2px 8px rgba(15, 118, 110, 0.4);
+      cursor: pointer;
+      margin-top: -8px;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 8px;
+      cursor: pointer;
+      background: #e2e8f0;
+      border-radius: 9999px;
+    }
+
+    /* Screen view transition classes */
+    .onboarding-screen {
+      display: none;
+    }
+    .onboarding-screen.active {
+      display: flex;
+      animation: fadeSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Confetti Particle Canvas */
+    .particle {
+      position: absolute;
+      border-radius: 4px;
+      pointer-events: none;
+      animation: confettiFall 2.5s ease-out forwards;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      100% { transform: translateY(280px) rotate(360deg) scale(0.6); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="bg-surface text-charcoal-900 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-primary-subtle selection:text-primary-dark">
+
+  <!-- TOP APP BAR / GLOBAL ONBOARDING HEADER -->
+  <header class="w-full max-w-xl mx-auto px-5 pt-4 pb-2 z-20 sticky top-0 bg-surface/95 backdrop-blur-md">
+    <div class="flex items-center justify-between mb-3">
+      <!-- Brand & Back Button -->
+      <div class="flex items-center gap-2">
+        <button id="btn-back-global" onclick="navigateStep(-1)" class="w-9 h-9 rounded-full flex items-center justify-center text-charcoal-700 hover:bg-slate-200/70 active:scale-95 transition-all text-sm" style="visibility: hidden;">
+          <span class="material-symbols-rounded text-xl">arrow_back</span>
+        </button>
+        <div class="flex items-center gap-1.5 pl-1 cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'">
+          <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center shadow-sm">
+            <span class="material-symbols-rounded text-white text-[16px]">vital_signs</span>
+          </div>
+          <span class="text-base font-bold tracking-tight text-charcoal-900">Bealth<span class="text-primary">AI</span></span>
+        </div>
+      </div>
+
+      <!-- Step Counter Badge -->
+      <div id="step-badge-container" class="flex items-center gap-2">
+        <span id="step-indicator-text" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary-light text-primary border border-primary-subtle transition-all">Start</span>
+        <button id="btn-skip-global" onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'" class="text-xs font-medium text-charcoal-500 hover:text-primary transition-colors py-1 px-1.5 rounded" style="display: block;">
+          Skip
+        </button>
+      </div>
+    </div>
+
+    <!-- Smooth Progress Bar Indicator -->
+    <div id="progress-bar-container" class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden relative">
+      <div id="progress-bar-fill" class="bg-gradient-to-r from-primary via-accent to-emerald-400 h-full rounded-full transition-all duration-300 ease-out" style="width: 5%;"></div>
+    </div>
+
+    <!-- Quick Step Selector for Prototype Reviewers -->
+    <div class="mt-2 flex items-center justify-between text-[11px] text-charcoal-400 border-t border-slate-100 pt-1.5">
+      <span class="flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+        Interactive Journey Flow
+      </span>
+      <select id="direct-step-jump" onchange="jumpToStep(parseInt(this.value))" class="bg-transparent text-[11px] text-primary font-medium focus:outline-none cursor-pointer">
+        <option value="1">1. Meet Your Coach</option>
+        <option value="2">2. What's Your Name?</option>
+        <option value="3">3. About You (Age &amp; Gender)</option>
+        <option value="4">4. Body Metrics</option>
+        <option value="5">5. Main Health Goal</option>
+        <option value="6">6. Movement Level</option>
+        <option value="7">7. Food Style</option>
+        <option value="8">8. Food Preferences</option>
+        <option value="9">9. Daily Routine</option>
+        <option value="10">10. Movement Preference</option>
+        <option value="11">11. Health Considerations</option>
+        <option value="12">12. Coach Tone &amp; Style</option>
+        <option value="13">13. Profile Summary</option>
+        <option value="14">14. AI Synthesis</option>
+        <option value="15">15. You're Ready!</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- MAIN SCROLLER / SCREEN CONTAINER -->
+  <main class="w-full max-w-xl mx-auto px-5 py-3 flex-1 flex flex-col justify-center">
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 1: MEET YOUR COACH -->
+    <!-- ============================================================= -->
+    <div id="step-1" class="onboarding-screen active flex-col items-center text-center">
+      <!-- Visual Avatar / Friendly AI Companion -->
+      <div class="relative my-4 flex justify-center items-center">
+        <!-- Ambient Glowing Rings -->
+        <div class="absolute w-44 h-44 rounded-full bg-primary-subtle/50 animate-pulse-soft blur-lg"></div>
+        <div class="absolute w-36 h-36 rounded-full border-2 border-dashed border-accent/40 animate-spin-slow"></div>
+        
+        <!-- Center Coach Bubble -->
+        <div class="relative w-28 h-28 rounded-3xl bg-gradient-to-tr from-primary to-accent p-1 shadow-glow animate-float-gentle flex items-center justify-center">
+          <div class="w-full h-full bg-white rounded-[22px] flex flex-col items-center justify-center p-3 relative overflow-hidden">
+            <div class="w-12 h-12 rounded-2xl bg-primary-light flex items-center justify-center text-primary mb-1">
+              <span class="material-symbols-rounded text-3xl">smart_toy</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+              <span class="text-[11px] font-bold text-charcoal-700 tracking-wider">BEALTH AI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Tag Badges -->
+        <div class="absolute -top-2 -right-4 bg-white shadow-subtle border border-emerald-100 text-[11px] font-semibold text-emerald-800 px-3 py-1 rounded-full flex items-center gap-1 animate-float-gentle" style="animation-delay: 0.8s;">
+          <span class="">✨</span> Adaptive
+        </div>
+        <div class="absolute -bottom-2 -left-4 bg-white shadow-subtle border border-emerald-100 text-[11px] font-semibold text-charcoal-700 px-3 py-1 rounded-full flex items-center gap-1 animate-float-gentle" style="animation-delay: 1.5s;">
+          <span class="">🔒</span> Private
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight mt-3">
+        Let's build your <span class="text-primary">Health Coach</span>
+      </h1>
+      <p class="text-sm sm:text-base text-charcoal-500 mt-2 max-w-sm mx-auto leading-relaxed">
+        Tell me a little about yourself, and I'll personalize your daily nutrition, fitness, and recovery experience.
+      </p>
+
+      <!-- Three Pillars Pill Grid -->
+      <div class="grid grid-cols-3 gap-2.5 w-full max-w-sm mt-6 mb-4">
+        <div class="bg-white p-3 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center justify-center group hover:border-primary/40 transition-all">
+          <span class="text-2xl mb-1">🍎</span>
+          <span class="text-xs font-semibold text-charcoal-900">Nutrition</span>
+          <span class="text-[10px] text-charcoal-400">Tailored meals</span>
+        </div>
+        <div class="bg-white p-3 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center justify-center group hover:border-primary/40 transition-all">
+          <span class="text-2xl mb-1">🏃</span>
+          <span class="text-xs font-semibold text-charcoal-900">Fitness</span>
+          <span class="text-[10px] text-charcoal-400">Adaptive routines</span>
+        </div>
+        <div class="bg-white p-3 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center justify-center group hover:border-primary/40 transition-all">
+          <span class="text-2xl mb-1">🤖</span>
+          <span class="text-xs font-semibold text-charcoal-900">AI Coach</span>
+          <span class="text-[10px] text-charcoal-400">Everyday cues</span>
+        </div>
+      </div>
+
+      <!-- Bottom CTAs -->
+      <div class="w-full max-w-sm mt-auto pt-4 space-y-2.5">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Let's Do It</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+        <button onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'" class="w-full py-2.5 text-xs font-medium text-charcoal-500 hover:text-charcoal-700 transition-colors">
+          I'll explore default settings first
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 2: YOUR NAME -->
+    <!-- ============================================================= -->
+    <div id="step-2" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-primary-light flex items-center justify-center text-primary mb-3">
+        <span class="material-symbols-rounded text-2xl">waving_hand</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        First, what should I call you?
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        Your coach should know your name to address you properly.
+      </p>
+
+      <div class="mt-8 space-y-4">
+        <div class="relative">
+          <input type="text" id="user-name-input" value="Pratik" placeholder="e.g. Alex, Sarah, Pratik..." oninput="handleNameInput(this.value)" class="w-full bg-white border-2 border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary-subtle/40 rounded-2xl py-4 px-5 text-xl font-bold text-charcoal-900 placeholder:text-charcoal-400 placeholder:font-normal outline-none transition-all shadow-sm">
+          <button onclick="clearNameInput()" class="absolute right-4 top-1/2 -translate-y-1/2 text-charcoal-400 hover:text-charcoal-600">
+            <span class="material-symbols-rounded text-lg">cancel</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Live Greeting Feedback -->
+        <div id="name-greeting-box" class="p-4 rounded-2xl bg-primary-light/70 border border-primary-subtle flex items-center gap-3 transition-all duration-300">
+          <div class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">
+            👋
+          </div>
+          <div>
+            <p class="text-sm font-bold text-primary-dark" id="greeting-display">
+              Nice to meet you, Pratik!
+            </p>
+            <p class="text-xs text-charcoal-500">I'm excited to help you reach your goals.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-8">
+        <button id="btn-name-continue" onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 3: ABOUT YOU (AGE & GENDER) -->
+    <!-- ============================================================= -->
+    <div id="step-3" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">person</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        Tell me a little about yourself
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        This helps calculate resting energy expenditure and age-appropriate guidelines.
+      </p>
+
+      <div class="mt-6 space-y-5">
+        <!-- Age Input Stepper -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+          <label class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">Your Age</label>
+          <div class="flex items-center justify-between">
+            <button onclick="adjustAge(-1)" class="w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-charcoal-700 flex items-center justify-center transition-all font-bold text-lg">
+              −
+            </button>
+            <div class="flex items-baseline gap-1">
+              <span id="display-age" class="text-4xl font-extrabold text-charcoal-900">21</span>
+              <span class="text-sm font-semibold text-charcoal-400">years</span>
+            </div>
+            <button onclick="adjustAge(1)" class="w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-charcoal-700 flex items-center justify-center transition-all font-bold text-lg">
+              +
+            </button>
+          </div>
+        </div>
+
+        <!-- Gender Selection (Inclusive & Optional) -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-bold text-charcoal-500 uppercase tracking-wider">Gender</label>
+            <span class="text-[11px] text-charcoal-400">Optional</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2.5" id="gender-group">
+            <button onclick="selectGender(this, 'Male')" class="gender-card p-3 rounded-2xl bg-white border-2 border-primary bg-primary-light/20 text-left flex items-center justify-between transition-all">
+              <span class="text-sm font-semibold text-charcoal-900">Male</span>
+              <span class="material-symbols-rounded text-primary text-lg">check_circle</span>
+            </button>
+            <button onclick="selectGender(this, 'Female')" class="gender-card p-3 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center justify-between hover:border-slate-300 transition-all">
+              <span class="text-sm font-semibold text-charcoal-900">Female</span>
+              <span class="material-symbols-rounded text-slate-300 text-lg">radio_button_unchecked</span>
+            </button>
+            <button onclick="selectGender(this, 'Non-binary')" class="gender-card p-3 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center justify-between hover:border-slate-300 transition-all">
+              <span class="text-sm font-semibold text-charcoal-900">Non-binary</span>
+              <span class="material-symbols-rounded text-slate-300 text-lg">radio_button_unchecked</span>
+            </button>
+            <button onclick="selectGender(this, 'Prefer not to say')" class="gender-card p-3 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center justify-between hover:border-slate-300 transition-all">
+              <span class="text-xs font-semibold text-charcoal-700">Prefer not to say</span>
+              <span class="material-symbols-rounded text-slate-300 text-lg">radio_button_unchecked</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 4: BODY METRICS -->
+    <!-- ============================================================= -->
+    <div id="step-4" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">straighten</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        Let's understand your starting point
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        These details calibrate personalized nutrition targets and workout volumes.
+      </p>
+
+      <!-- Unit Toggle (kg/lb & cm/ft) -->
+      <div class="flex justify-end mt-4">
+        <div class="bg-slate-200/80 p-1 rounded-xl flex items-center gap-1 text-xs font-bold">
+          <button id="unit-metric-btn" onclick="toggleMetricUnits('metric')" class="px-3 py-1 rounded-lg bg-white text-primary shadow-xs transition-all">
+            Metric (kg, cm)
+          </button>
+          <button id="unit-imperial-btn" onclick="toggleMetricUnits('imperial')" class="px-3 py-1 rounded-lg text-charcoal-500 hover:text-charcoal-700 transition-all">
+            Imperial (lb, ft)
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-4 space-y-4">
+        <!-- Weight Card with Interactive Stepper & Slider -->
+        <div class="bg-white p-4.5 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-charcoal-500 uppercase tracking-wider flex items-center gap-1">
+              <span class="material-symbols-rounded text-sm text-primary">scale</span> Weight
+            </span>
+            <span class="text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium">Starting Baseline</span>
+          </div>
+
+          <div class="flex items-center justify-between py-1">
+            <button onclick="adjustWeight(-1)" class="w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-charcoal-800 flex items-center justify-center font-bold text-lg">
+              −
+            </button>
+            <div class="flex items-baseline gap-1">
+              <span id="display-weight" class="text-4xl font-black text-charcoal-900">72</span>
+              <span id="label-weight-unit" class="text-base font-bold text-charcoal-400">kg</span>
+            </div>
+            <button onclick="adjustWeight(1)" class="w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-charcoal-800 flex items-center justify-center font-bold text-lg">
+              +
+            </button>
+          </div>
+
+          <input type="range" id="weight-slider" min="40" max="140" value="72" oninput="handleWeightSlider(this.value)" class="w-full mt-2 accent-primary">
+        </div>
+
+        <!-- Height Card with Stepper & Slider -->
+        <div class="bg-white p-4.5 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-charcoal-500 uppercase tracking-wider flex items-center gap-1">
+              <span class="material-symbols-rounded text-sm text-primary">height</span> Height
+            </span>
+            <span class="text-[11px] text-charcoal-400">For energy estimates</span>
+          </div>
+
+          <div class="flex items-center justify-between py-1">
+            <button onclick="adjustHeight(-1)" class="w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-charcoal-800 flex items-center justify-center font-bold text-lg">
+              −
+            </button>
+            <div class="flex items-baseline gap-1">
+              <span id="display-height" class="text-4xl font-black text-charcoal-900">165</span>
+              <span id="label-height-unit" class="text-base font-bold text-charcoal-400">cm</span>
+            </div>
+            <button onclick="adjustHeight(1)" class="w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-charcoal-800 flex items-center justify-center font-bold text-lg">
+              +
+            </button>
+          </div>
+
+          <input type="range" id="height-slider" min="130" max="215" value="165" oninput="handleHeightSlider(this.value)" class="w-full mt-2 accent-primary">
+        </div>
+
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-100 text-[11px] text-charcoal-500">
+          <span class="material-symbols-rounded text-base text-primary">verified_user</span>
+          <span class="">We strictly protect your biological metrics. Used solely for wellness customization.</span>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 5: YOUR GOAL -->
+    <!-- ============================================================= -->
+    <div id="step-5" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">flag</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        What would you love to achieve?
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        Your core ambition anchors every workout recommendation and nutrition suggestion.
+      </p>
+
+      <!-- Selection Cards -->
+      <div class="grid grid-cols-2 gap-3 mt-6" id="goal-options-group">
+        <button onclick="selectGoal(this, 'Lose Weight', '🎯')" class="goal-card group p-3.5 rounded-2xl bg-white border-2 border-primary bg-primary-light/20 text-left shadow-sm hover:shadow-card-hover transition-all relative overflow-hidden">
+          <span class="text-2xl mb-1.5 block">🎯</span>
+          <h4 class="text-sm font-bold text-charcoal-900">Lose Weight</h4>
+          <p class="text-[11px] text-charcoal-500 mt-0.5">Sustainable fat loss &amp; energy</p>
+          <div class="goal-check absolute top-3 right-3 text-primary">
+            <span class="material-symbols-rounded text-lg">check_circle</span>
+          </div>
+        </button>
+
+        <button onclick="selectGoal(this, 'Gain Muscle', '💪')" class="goal-card group p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left shadow-sm hover:border-primary/50 transition-all relative overflow-hidden">
+          <span class="text-2xl mb-1.5 block">💪</span>
+          <h4 class="text-sm font-bold text-charcoal-900">Gain Muscle</h4>
+          <p class="text-[11px] text-charcoal-500 mt-0.5">Hypertrophy &amp; strength</p>
+          <div class="goal-check absolute top-3 right-3 text-slate-300">
+            <span class="material-symbols-rounded text-lg">radio_button_unchecked</span>
+          </div>
+        </button>
+
+        <button onclick="selectGoal(this, 'Maintain Weight', '⚖️')" class="goal-card group p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left shadow-sm hover:border-primary/50 transition-all relative overflow-hidden">
+          <span class="text-2xl mb-1.5 block">⚖️</span>
+          <h4 class="text-sm font-bold text-charcoal-900">Maintain Weight</h4>
+          <p class="text-[11px] text-charcoal-500 mt-0.5">Stay balanced &amp; fit</p>
+          <div class="goal-check absolute top-3 right-3 text-slate-300">
+            <span class="material-symbols-rounded text-lg">radio_button_unchecked</span>
+          </div>
+        </button>
+
+        <button onclick="selectGoal(this, 'Improve Fitness', '🏃')" class="goal-card group p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left shadow-sm hover:border-primary/50 transition-all relative overflow-hidden">
+          <span class="text-2xl mb-1.5 block">🏃</span>
+          <h4 class="text-sm font-bold text-charcoal-900">Improve Fitness</h4>
+          <p class="text-[11px] text-charcoal-500 mt-0.5">Cardio stamina &amp; VO2</p>
+          <div class="goal-check absolute top-3 right-3 text-slate-300">
+            <span class="material-symbols-rounded text-lg">radio_button_unchecked</span>
+          </div>
+        </button>
+
+        <button onclick="selectGoal(this, 'Eat Healthier', '🥗')" class="goal-card group p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left shadow-sm hover:border-primary/50 transition-all relative overflow-hidden">
+          <span class="text-2xl mb-1.5 block">🥗</span>
+          <h4 class="text-sm font-bold text-charcoal-900">Eat Healthier</h4>
+          <p class="text-[11px] text-charcoal-500 mt-0.5">Whole foods &amp; clean habits</p>
+          <div class="goal-check absolute top-3 right-3 text-slate-300">
+            <span class="material-symbols-rounded text-lg">radio_button_unchecked</span>
+          </div>
+        </button>
+
+        <button onclick="selectGoal(this, 'Build Habits', '🌱')" class="goal-card group p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left shadow-sm hover:border-primary/50 transition-all relative overflow-hidden">
+          <span class="text-2xl mb-1.5 block">🌱</span>
+          <h4 class="text-sm font-bold text-charcoal-900">Build Habits</h4>
+          <p class="text-[11px] text-charcoal-500 mt-0.5">Daily streaks &amp; wellness</p>
+          <div class="goal-check absolute top-3 right-3 text-slate-300">
+            <span class="material-symbols-rounded text-lg">radio_button_unchecked</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Coach Acknowledgement Feedback -->
+      <div id="goal-feedback-banner" class="mt-4 p-3 rounded-xl bg-primary-light border border-primary-subtle text-xs text-primary-dark font-medium flex items-center gap-2">
+        <span class="material-symbols-rounded text-base text-primary">lightbulb</span>
+        <span class="">Got it! We'll keep <strong>Lose Weight</strong> as your core driver.</span>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">That's My Goal</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 6: ACTIVITY LEVEL -->
+    <!-- ============================================================= -->
+    <div id="step-6" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">directions_run</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        How much do you move right now?
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        No judgment. Just tell us what your typical week looks like.
+      </p>
+
+      <div class="mt-6 space-y-3" id="activity-group">
+        <button onclick="selectActivity(this, 'Sedentary')" class="activity-card w-full p-4 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center gap-3.5 hover:border-slate-300 transition-all">
+          <span class="text-3xl">🛋️</span>
+          <div class="flex-1">
+            <h4 class="text-sm font-bold text-charcoal-900">Sedentary</h4>
+            <p class="text-xs text-charcoal-500">Mostly desk work or sitting with little structured exercise</p>
+          </div>
+          <span class="material-symbols-rounded text-slate-300 text-xl activity-icon">radio_button_unchecked</span>
+        </button>
+
+        <button onclick="selectActivity(this, 'Lightly Active')" class="activity-card w-full p-4 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center gap-3.5 hover:border-slate-300 transition-all">
+          <span class="text-3xl">🚶</span>
+          <div class="flex-1">
+            <h4 class="text-sm font-bold text-charcoal-900">Lightly Active</h4>
+            <p class="text-xs text-charcoal-500">Occasional walks, light gardening, 1–2 light workouts/wk</p>
+          </div>
+          <span class="material-symbols-rounded text-slate-300 text-xl activity-icon">radio_button_unchecked</span>
+        </button>
+
+        <button onclick="selectActivity(this, 'Moderately Active')" class="activity-card w-full p-4 rounded-2xl bg-white border-2 border-primary bg-primary-light/20 text-left flex items-center gap-3.5 shadow-sm transition-all">
+          <span class="text-3xl">🏃</span>
+          <div class="flex-1">
+            <h4 class="text-sm font-bold text-charcoal-900">Moderately Active</h4>
+            <p class="text-xs text-charcoal-500">Regular exercise or movement 3–5 days per week</p>
+          </div>
+          <span class="material-symbols-rounded text-primary text-xl activity-icon">check_circle</span>
+        </button>
+
+        <button onclick="selectActivity(this, 'Very Active')" class="activity-card w-full p-4 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center gap-3.5 hover:border-slate-300 transition-all">
+          <span class="text-3xl">🔥</span>
+          <div class="flex-1">
+            <h4 class="text-sm font-bold text-charcoal-900">Very Active</h4>
+            <p class="text-xs text-charcoal-500">Athletic training or physically intensive job daily</p>
+          </div>
+          <span class="material-symbols-rounded text-slate-300 text-xl activity-icon">radio_button_unchecked</span>
+        </button>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 7: YOUR FOOD STYLE -->
+    <!-- ============================================================= -->
+    <div id="step-7" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">restaurant</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        How do you usually eat?
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        Your coach can recommend meals that actually fit your preferences and beliefs.
+      </p>
+
+      <div class="grid grid-cols-2 gap-2.5 mt-6" id="diet-group">
+        <button onclick="selectDiet(this, 'Vegetarian')" class="diet-card p-3.5 rounded-2xl bg-white border-2 border-primary bg-primary-light/20 text-left flex items-center justify-between transition-all">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🥬</span>
+            <span class="text-sm font-bold text-charcoal-900">Vegetarian</span>
+          </div>
+          <span class="material-symbols-rounded text-primary text-lg diet-check">check_circle</span>
+        </button>
+
+        <button onclick="selectDiet(this, 'Non-Vegetarian')" class="diet-card p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center justify-between hover:border-slate-300 transition-all">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🍗</span>
+            <span class="text-sm font-bold text-charcoal-900">Non-Veg</span>
+          </div>
+          <span class="material-symbols-rounded text-slate-300 text-lg diet-check">radio_button_unchecked</span>
+        </button>
+
+        <button onclick="selectDiet(this, 'Vegan')" class="diet-card p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center justify-between hover:border-slate-300 transition-all">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🌱</span>
+            <span class="text-sm font-bold text-charcoal-900">Vegan</span>
+          </div>
+          <span class="material-symbols-rounded text-slate-300 text-lg diet-check">radio_button_unchecked</span>
+        </button>
+
+        <button onclick="selectDiet(this, 'Eggetarian')" class="diet-card p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center justify-between hover:border-slate-300 transition-all">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🥚</span>
+            <span class="text-sm font-bold text-charcoal-900">Eggetarian</span>
+          </div>
+          <span class="material-symbols-rounded text-slate-300 text-lg diet-check">radio_button_unchecked</span>
+        </button>
+
+        <button onclick="selectDiet(this, 'Jain')" class="diet-card p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center justify-between hover:border-slate-300 transition-all">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🪷</span>
+            <span class="text-sm font-bold text-charcoal-900">Jain</span>
+          </div>
+          <span class="material-symbols-rounded text-slate-300 text-lg diet-check">radio_button_unchecked</span>
+        </button>
+
+        <button onclick="selectDiet(this, 'Other')" class="diet-card p-3.5 rounded-2xl bg-white border-2 border-slate-200 text-left flex items-center justify-between hover:border-slate-300 transition-all">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">✨</span>
+            <span class="text-sm font-bold text-charcoal-900">Other / Flex</span>
+          </div>
+          <span class="material-symbols-rounded text-slate-300 text-lg diet-check">radio_button_unchecked</span>
+        </button>
+      </div>
+
+      <div class="mt-5 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-charcoal-600 flex items-center gap-2">
+        <span class="text-base">👌</span>
+        <span class="">Perfect. We'll prioritize recipes and meal logs adhering to <strong>Vegetarian</strong> choices.</span>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 8: FOOD PREFERENCES & ALLERGIES -->
+    <!-- ============================================================= -->
+    <div id="step-8" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">set_meal</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        Make it feel like YOUR food
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        Choose favorite cuisines and any allergies you'd like BealthAI to flag.
+      </p>
+
+      <div class="mt-5 space-y-4">
+        <!-- Cuisines Chips -->
+        <div>
+          <label class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">Favorite Cuisines (Pick any)</label>
+          <div class="flex flex-wrap gap-2" id="cuisine-chips">
+            <button onclick="toggleChip(this)" class="chip px-3.5 py-1.5 rounded-full text-xs font-bold bg-primary text-white border border-primary transition-all">
+              Indian
+            </button>
+            <button onclick="toggleChip(this)" class="chip px-3.5 py-1.5 rounded-full text-xs font-bold bg-primary text-white border border-primary transition-all">
+              North Indian
+            </button>
+            <button onclick="toggleChip(this)" class="chip px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-charcoal-700 border border-slate-200 hover:border-slate-300 transition-all">
+              South Indian
+            </button>
+            <button onclick="toggleChip(this)" class="chip px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-charcoal-700 border border-slate-200 hover:border-slate-300 transition-all">
+              Mediterranean
+            </button>
+            <button onclick="toggleChip(this)" class="chip px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-charcoal-700 border border-slate-200 hover:border-slate-300 transition-all">
+              Asian
+            </button>
+            <button onclick="toggleChip(this)" class="chip px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-charcoal-700 border border-slate-200 hover:border-slate-300 transition-all">
+              Continental
+            </button>
+          </div>
+        </div>
+
+        <!-- Allergies / Avoidances List Input -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-bold text-charcoal-500 uppercase tracking-wider flex items-center gap-1">
+              <span class="material-symbols-rounded text-sm text-red-500">warning</span> Allergies or Intolerances
+            </label>
+            <span class="text-[11px] text-charcoal-400">Optional</span>
+          </div>
+
+          <div id="allergy-tags-container" class="flex flex-wrap gap-2 mb-2.5">
+            <span class="inline-flex items-center gap-1 bg-red-50 text-red-700 border border-red-200 text-xs px-2.5 py-1 rounded-full font-medium">
+              Peanuts
+              <button onclick="this.parentElement.remove()" class="hover:text-red-900"><span class="material-symbols-rounded text-sm">close</span></button>
+            </span>
+          </div>
+
+          <div class="flex gap-2">
+            <input type="text" id="allergy-input" placeholder="e.g. Shellfish, Gluten, Dairy..." class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-primary">
+            <button onclick="addAllergyTag()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-charcoal-700 rounded-xl text-xs font-bold transition-all">
+              + Add
+            </button>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-charcoal-400 italic">
+          Only share what you're comfortable sharing. You can update dietary boundaries anytime.
+        </p>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 9: YOUR ROUTINE -->
+    <!-- ============================================================= -->
+    <div id="step-9" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">schedule</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        When does healthy fit your day?
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        BealthAI syncs with your natural circadian rhythm instead of fighting it.
+      </p>
+
+      <div class="mt-5 space-y-4">
+        <!-- Wake & Sleep Grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="flex items-center gap-1.5 text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">
+              <span class="text-base">☀️</span> Wake Up
+            </div>
+            <select class="w-full bg-slate-50 border border-slate-200 text-base font-bold text-charcoal-900 rounded-xl p-2.5 outline-none focus:border-primary">
+              <option>06:30 AM</option>
+              <option>07:00 AM</option>
+              <option selected="">07:30 AM</option>
+              <option>08:00 AM</option>
+              <option>08:30 AM</option>
+            </select>
+          </div>
+
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="flex items-center gap-1.5 text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">
+              <span class="text-base">🌙</span> Sleep
+            </div>
+            <select class="w-full bg-slate-50 border border-slate-200 text-base font-bold text-charcoal-900 rounded-xl p-2.5 outline-none focus:border-primary">
+              <option>10:30 PM</option>
+              <option>11:00 PM</option>
+              <option selected="">11:30 PM</option>
+              <option>12:00 AM</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Preferred Workout Timing -->
+        <div>
+          <label class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">Best Workout Window</label>
+          <div class="grid grid-cols-4 gap-2" id="time-window-group">
+            <button onclick="selectTimeWindow(this, 'Morning')" class="window-btn p-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-charcoal-700 hover:border-slate-300 text-center transition-all">
+              🌅 Morning
+            </button>
+            <button onclick="selectTimeWindow(this, 'Afternoon')" class="window-btn p-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-charcoal-700 hover:border-slate-300 text-center transition-all">
+              ☀️ Afternoon
+            </button>
+            <button onclick="selectTimeWindow(this, 'Evening')" class="window-btn p-2 rounded-xl bg-primary text-white border border-primary text-xs font-bold text-center transition-all">
+              🌆 Evening
+            </button>
+            <button onclick="selectTimeWindow(this, 'Flexible')" class="window-btn p-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-charcoal-700 hover:border-slate-300 text-center transition-all">
+              ⚡ Flexible
+            </button>
+          </div>
+        </div>
+
+        <!-- Preferred Duration -->
+        <div>
+          <label class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">Workout Duration</label>
+          <div class="grid grid-cols-4 gap-2" id="duration-group">
+            <button onclick="selectDuration(this, '10–15m')" class="dur-btn p-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-charcoal-700 text-center transition-all">
+              10–15m
+            </button>
+            <button onclick="selectDuration(this, '20–30m')" class="dur-btn p-2 rounded-xl bg-primary text-white border border-primary text-xs font-bold text-center transition-all">
+              20–30m
+            </button>
+            <button onclick="selectDuration(this, '30–45m')" class="dur-btn p-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-charcoal-700 text-center transition-all">
+              30–45m
+            </button>
+            <button onclick="selectDuration(this, '45m+')" class="dur-btn p-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-charcoal-700 text-center transition-all">
+              45m+
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 10: MOVEMENT PREFERENCES & EQUIPMENT -->
+    <!-- ============================================================= -->
+    <div id="step-10" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">fitness_center</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        What movement do you enjoy?
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        Choose activities you'd look forward to doing. Multi-select enabled.
+      </p>
+
+      <div class="mt-5 space-y-4">
+        <!-- Movement Disciplines -->
+        <div>
+          <label class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">Disciplines</label>
+          <div class="grid grid-cols-4 gap-2" id="disciplines-grid">
+            <button onclick="toggleMoveCard(this)" class="move-card p-2.5 rounded-2xl bg-white border-2 border-primary bg-primary-light/20 text-center transition-all">
+              <span class="text-xl block mb-1">💪</span>
+              <span class="text-xs font-bold text-charcoal-900">Strength</span>
+            </button>
+            <button onclick="toggleMoveCard(this)" class="move-card p-2.5 rounded-2xl bg-white border-2 border-primary bg-primary-light/20 text-center transition-all">
+              <span class="text-xl block mb-1">❤️</span>
+              <span class="text-xs font-bold text-charcoal-900">Cardio</span>
+            </button>
+            <button onclick="toggleMoveCard(this)" class="move-card p-2.5 rounded-2xl bg-white border-2 border-slate-200 text-center hover:border-slate-300 transition-all">
+              <span class="text-xl block mb-1">🔥</span>
+              <span class="text-xs font-semibold text-charcoal-800">HIIT</span>
+            </button>
+            <button onclick="toggleMoveCard(this)" class="move-card p-2.5 rounded-2xl bg-white border-2 border-slate-200 text-center hover:border-slate-300 transition-all">
+              <span class="text-xl block mb-1">🧘</span>
+              <span class="text-xs font-semibold text-charcoal-800">Yoga</span>
+            </button>
+            <button onclick="toggleMoveCard(this)" class="move-card p-2.5 rounded-2xl bg-white border-2 border-primary bg-primary-light/20 text-center transition-all">
+              <span class="text-xl block mb-1">🚶</span>
+              <span class="text-xs font-bold text-charcoal-900">Walking</span>
+            </button>
+            <button onclick="toggleMoveCard(this)" class="move-card p-2.5 rounded-2xl bg-white border-2 border-slate-200 text-center hover:border-slate-300 transition-all">
+              <span class="text-xl block mb-1">🤸</span>
+              <span class="text-xs font-semibold text-charcoal-800">Mobility</span>
+            </button>
+            <button onclick="toggleMoveCard(this)" class="move-card p-2.5 rounded-2xl bg-white border-2 border-slate-200 text-center hover:border-slate-300 transition-all">
+              <span class="text-xl block mb-1">🏃</span>
+              <span class="text-xs font-semibold text-charcoal-800">Running</span>
+            </button>
+            <button onclick="toggleMoveCard(this)" class="move-card p-2.5 rounded-2xl bg-white border-2 border-slate-200 text-center hover:border-slate-300 transition-all">
+              <span class="text-xl block mb-1">🏋️</span>
+              <span class="text-xs font-semibold text-charcoal-800">Gym</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Equipment Available -->
+        <div>
+          <label class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">Available Equipment</label>
+          <div class="grid grid-cols-2 gap-2" id="equipment-grid">
+            <button onclick="toggleEquipment(this)" class="equip-btn p-3 rounded-xl bg-white border-2 border-primary bg-primary-light/20 text-xs font-bold text-charcoal-900 text-left flex items-center justify-between">
+              <span class="">Bodyweight / None</span>
+              <span class="material-symbols-rounded text-primary text-base">check</span>
+            </button>
+            <button onclick="toggleEquipment(this)" class="equip-btn p-3 rounded-xl bg-white border-2 border-slate-200 text-xs font-medium text-charcoal-700 text-left flex items-center justify-between">
+              <span class="">Dumbbells</span>
+              <span class="material-symbols-rounded text-slate-300 text-base">add</span>
+            </button>
+            <button onclick="toggleEquipment(this)" class="equip-btn p-3 rounded-xl bg-white border-2 border-slate-200 text-xs font-medium text-charcoal-700 text-left flex items-center justify-between">
+              <span class="">Resistance Bands</span>
+              <span class="material-symbols-rounded text-slate-300 text-base">add</span>
+            </button>
+            <button onclick="toggleEquipment(this)" class="equip-btn p-3 rounded-xl bg-white border-2 border-slate-200 text-xs font-medium text-charcoal-700 text-left flex items-center justify-between">
+              <span class="">Full Gym Access</span>
+              <span class="material-symbols-rounded text-slate-300 text-base">add</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 11: HEALTH CONSIDERATIONS (CALM & OPTIONAL) -->
+    <!-- ============================================================= -->
+    <div id="step-11" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">shield_with_heart</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        Anything your coach should know?
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        Optional — share only what you're comfortable with so workouts accommodate your physical needs.
+      </p>
+
+      <div class="mt-6 space-y-3">
+        <div class="bg-white p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between">
+          <div>
+            <h4 class="text-xs font-bold text-charcoal-900">Injuries or joint sensitivity</h4>
+            <p class="text-[11px] text-charcoal-500">e.g. lower back discomfort, knee care</p>
+          </div>
+          <button class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-charcoal-700">
+            + Add
+          </button>
+        </div>
+
+        <div class="bg-white p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between">
+          <div>
+            <h4 class="text-xs font-bold text-charcoal-900">Health conditions</h4>
+            <p class="text-[11px] text-charcoal-500">e.g. asthma, blood pressure, none</p>
+          </div>
+          <button class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-charcoal-700">
+            + Add
+          </button>
+        </div>
+
+        <div class="bg-white p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between">
+          <div>
+            <h4 class="text-xs font-bold text-charcoal-900">Physical restrictions</h4>
+            <p class="text-[11px] text-charcoal-500">Low impact only, no jumping</p>
+          </div>
+          <button class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-charcoal-700">
+            + Add
+          </button>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-charcoal-600 flex items-start gap-2.5">
+          <span class="material-symbols-rounded text-primary text-base shrink-0 mt-0.5">lock</span>
+          <p class="text-[11px] leading-relaxed">
+            Your information remains strictly encrypted and private. BealthAI does not provide medical diagnoses or replace clinical care.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-6 space-y-2">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Continue</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+        <button onclick="navigateStep(1)" class="w-full py-2.5 text-xs font-semibold text-charcoal-500 hover:text-charcoal-800">
+          Skip for now
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 12: COACH PERSONALITY & TONE -->
+    <!-- ============================================================= -->
+    <div id="step-12" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-primary flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">neurology</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        One last touch...
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        How would you like your AI Health Coach to communicate with you?
+      </p>
+
+      <div class="mt-5 space-y-4">
+        <!-- Personality Matrix -->
+        <div>
+          <label class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">Coaching Persona</label>
+          <div class="grid grid-cols-2 gap-2.5" id="tone-group">
+            <button onclick="selectTone(this, 'Friendly')" class="tone-card p-3 rounded-2xl bg-white border-2 border-slate-200 text-left hover:border-slate-300 transition-all">
+              <span class="text-xl block mb-1">😊</span>
+              <h4 class="text-xs font-bold text-charcoal-900">Friendly</h4>
+              <p class="text-[10px] text-charcoal-500">Gentle &amp; warm praise</p>
+            </button>
+            <button onclick="selectTone(this, 'Motivational')" class="tone-card p-3 rounded-2xl bg-white border-2 border-slate-200 text-left hover:border-slate-300 transition-all">
+              <span class="text-xl block mb-1">🔥</span>
+              <h4 class="text-xs font-bold text-charcoal-900">Motivational</h4>
+              <p class="text-[10px] text-charcoal-500">High energy driver</p>
+            </button>
+            <button onclick="selectTone(this, 'Balanced')" class="tone-card p-3 rounded-2xl bg-white border-2 border-primary bg-primary-light/20 text-left shadow-sm transition-all">
+              <span class="text-xl block mb-1">⚖️</span>
+              <h4 class="text-xs font-bold text-charcoal-900">Balanced</h4>
+              <p class="text-[10px] text-charcoal-500">Pragmatic &amp; science-led</p>
+            </button>
+            <button onclick="selectTone(this, 'Direct')" class="tone-card p-3 rounded-2xl bg-white border-2 border-slate-200 text-left hover:border-slate-300 transition-all">
+              <span class="text-xl block mb-1">🎯</span>
+              <h4 class="text-xs font-bold text-charcoal-900">Direct</h4>
+              <p class="text-[10px] text-charcoal-500">Concise &amp; analytical</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Detail Level -->
+        <div>
+          <label class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-2">Advice Style</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button class="p-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-charcoal-700 text-center">
+              Quick &amp; Simple
+            </button>
+            <button class="p-2.5 rounded-xl bg-primary text-white border border-primary text-xs font-bold text-center">
+              Detailed Insights
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <button onclick="navigateStep(1)" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Create My Experience</span>
+          <span class="material-symbols-rounded text-lg">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 13: YOUR PROFILE SUMMARY -->
+    <!-- ============================================================= -->
+    <div id="step-13" class="onboarding-screen flex-col">
+      <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-primary flex items-center justify-center mb-3">
+        <span class="material-symbols-rounded text-2xl">fact_check</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight">
+        Here's what I know about you
+      </h2>
+      <p class="text-sm text-charcoal-500 mt-1">
+        Review your profile before your personalized plan is generated.
+      </p>
+
+      <!-- Summary Matrix -->
+      <div class="mt-5 space-y-2.5 bg-white p-4 rounded-3xl border border-slate-200/90 shadow-sm text-xs">
+        <!-- Row: Identity -->
+        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="text-base">👤</span>
+            <span class="font-medium text-charcoal-500">About You</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-charcoal-900" id="summary-identity">Pratik • 21 yrs • 165 cm • 72 kg</span>
+            <button onclick="jumpToStep(3)" class="text-primary hover:underline text-[11px] font-bold">Edit</button>
+          </div>
+        </div>
+
+        <!-- Row: Goal -->
+        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🎯</span>
+            <span class="font-medium text-charcoal-500">Core Goal</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-charcoal-900" id="summary-goal">Lose Weight</span>
+            <button onclick="jumpToStep(5)" class="text-primary hover:underline text-[11px] font-bold">Edit</button>
+          </div>
+        </div>
+
+        <!-- Row: Activity -->
+        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🏃</span>
+            <span class="font-medium text-charcoal-500">Movement</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-charcoal-900" id="summary-activity">Moderately Active</span>
+            <button onclick="jumpToStep(6)" class="text-primary hover:underline text-[11px] font-bold">Edit</button>
+          </div>
+        </div>
+
+        <!-- Row: Food -->
+        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🥗</span>
+            <span class="font-medium text-charcoal-500">Nutrition</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-charcoal-900">Vegetarian • Indian</span>
+            <button onclick="jumpToStep(7)" class="text-primary hover:underline text-[11px] font-bold">Edit</button>
+          </div>
+        </div>
+
+        <!-- Row: Routine & Workout -->
+        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="text-base">⏰</span>
+            <span class="font-medium text-charcoal-500">Schedule</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-charcoal-900">Evening • 20–30 min</span>
+            <button onclick="jumpToStep(9)" class="text-primary hover:underline text-[11px] font-bold">Edit</button>
+          </div>
+        </div>
+
+        <!-- Row: Coach Persona -->
+        <div class="flex items-center justify-between py-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🤖</span>
+            <span class="font-medium text-charcoal-500">Coach Tone</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-charcoal-900">Balanced • Detailed</span>
+            <button onclick="jumpToStep(12)" class="text-primary hover:underline text-[11px] font-bold">Edit</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-6 space-y-2.5">
+        <button onclick="startSynthesisAnimation()" class="w-full h-13 py-3.5 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Looks Great! Build My Plan</span>
+          <span class="material-symbols-rounded text-lg">auto_awesome</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 14: AI SYNTHESIS LOADING STATE -->
+    <!-- ============================================================= -->
+    <div id="step-14" class="onboarding-screen flex-col items-center justify-center text-center py-8">
+      <div class="relative mb-6">
+        <div class="w-24 h-24 rounded-3xl bg-gradient-to-tr from-primary to-accent p-1 shadow-glow flex items-center justify-center animate-pulse-soft">
+          <div class="w-full h-full bg-white rounded-[22px] flex items-center justify-center text-primary">
+            <span class="material-symbols-rounded text-4xl animate-spin">sync</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-extrabold text-charcoal-900 tracking-tight">
+        Building your Health Coach...
+      </h2>
+      <p class="text-xs text-charcoal-500 mt-1 max-w-xs">
+        Synthesizing your biometric inputs, dietary boundaries, and weekly rhythm.
+      </p>
+
+      <!-- Animated Progress Checklist -->
+      <div class="w-full max-w-sm mt-8 space-y-3 text-left">
+        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-slate-100 shadow-2xs" id="synthesis-step-1">
+          <span class="material-symbols-rounded text-emerald-500 text-lg">check_circle</span>
+          <span class="text-xs font-semibold text-charcoal-900">Understanding your primary health goal</span>
+        </div>
+        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-slate-100 shadow-2xs" id="synthesis-step-2">
+          <span class="material-symbols-rounded text-emerald-500 text-lg">check_circle</span>
+          <span class="text-xs font-semibold text-charcoal-900">Setting dietary &amp; allergen filters</span>
+        </div>
+        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-slate-100 shadow-2xs" id="synthesis-step-3">
+          <span class="material-symbols-rounded text-primary animate-spin text-lg" id="spinner-fit">progress_activity</span>
+          <span class="text-xs font-semibold text-charcoal-900">Generating adaptive workout targets</span>
+        </div>
+        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-white/60 border border-slate-100" id="synthesis-step-4">
+          <span class="material-symbols-rounded text-slate-300 text-lg">radio_button_unchecked</span>
+          <span class="text-xs font-semibold text-charcoal-400">Calibrating your daily coaching tone</span>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-charcoal-400 mt-6">
+        Informational wellness configuration • Non-clinical
+      </p>
+    </div>
+
+
+    <!-- ============================================================= -->
+    <!-- SCREEN 15: YOU'RE READY! CELEBRATION -->
+    <!-- ============================================================= -->
+    <div id="step-15" class="onboarding-screen flex-col items-center text-center relative overflow-hidden">
+      <!-- Floating Confetti Container -->
+      <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+
+      <div class="w-20 h-20 rounded-3xl bg-emerald-50 text-emerald-600 border-2 border-emerald-200 flex items-center justify-center my-4 shadow-subtle animate-scale-pop">
+        <span class="material-symbols-rounded text-5xl">verified</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl font-black text-charcoal-900 tracking-tight">
+        You're all set, <span class="text-primary" id="final-name-span">Pratik</span>! 🎉
+      </h1>
+      <p class="text-sm text-charcoal-500 mt-1 max-w-xs">
+        Your personal BealthAI Health Coach is ready to guide your day.
+      </p>
+
+      <!-- 3 Highlight Cards -->
+      <div class="w-full max-w-sm mt-6 space-y-2.5 text-left">
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg">
+            🎯
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-charcoal-900">Your Goal Focus</h4>
+            <p class="text-[11px] text-charcoal-500" id="final-goal-span">Lose Weight (72 kg baseline)</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center font-bold text-lg">
+            🏃
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-charcoal-900">Your Movement</h4>
+            <p class="text-[11px] text-charcoal-500">20–30 min evening functional strength &amp; cardio</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg">
+            🥗
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-charcoal-900">Your Nutrition</h4>
+            <p class="text-[11px] text-charcoal-500">Vegetarian • Indian meals with protein pacing</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full max-w-sm mt-auto pt-6">
+        <button onclick="window.location.href='{{DATA:SCREEN:SCREEN_12}}'" class="w-full h-13 py-4 px-6 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-extrabold text-base shadow-cta flex items-center justify-center gap-2 transition-all">
+          <span class="">Go to My Dashboard</span>
+          <span class="material-symbols-rounded text-xl">space_dashboard</span>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- JAVASCRIPT STATE ENGINE & MICRO-INTERACTIONS -->
+  <script>
+    // State Store
+    const onboardingState = {
+      currentStep: 1,
+      totalSteps: 12, // Steps 1 to 12 are questionnaire, 13 is summary, 14 is loading, 15 is ready
+      userName: "Pratik",
+      age: 21,
+      gender: "Male",
+      weightKg: 72,
+      heightCm: 165,
+      unitSystem: "metric", // 'metric' or 'imperial'
+      goal: "Lose Weight",
+      activity: "Moderately Active",
+      diet: "Vegetarian",
+      cuisines: ["Indian", "North Indian"],
+      allergies: ["Peanuts"],
+      routine: {
+        wake: "07:30 AM",
+        sleep: "11:30 PM",
+        workoutWindow: "Evening",
+        duration: "20–30m"
+      },
+      disciplines: ["Strength", "Cardio", "Walking"],
+      equipment: ["Bodyweight / None"],
+      tone: "Balanced"
+    };
+
+    // DOM Elements
+    const progressBarFill = document.getElementById('progress-bar-fill');
+    const stepIndicatorText = document.getElementById('step-indicator-text');
+    const directStepJump = document.getElementById('direct-step-jump');
+    const btnBackGlobal = document.getElementById('btn-back-global');
+    const btnSkipGlobal = document.getElementById('btn-skip-global');
+
+    function updateProgressBar() {
+      const step = onboardingState.currentStep;
+      
+      // Update Jump Selector
+      if (directStepJump) directStepJump.value = step;
+
+      // Header visibility logic
+      if (step === 1) {
+        btnBackGlobal.style.visibility = 'hidden';
+        btnSkipGlobal.style.display = 'block';
+        stepIndicatorText.textContent = "Start";
+        progressBarFill.style.width = '5%';
+      } else if (step <= 12) {
+        btnBackGlobal.style.visibility = 'visible';
+        btnSkipGlobal.style.display = 'block';
+        stepIndicatorText.textContent = `Step ${step - 1} of 11`;
+        const percentage = ((step - 1) / 11) * 100;
+        progressBarFill.style.width = `${percentage}%`;
+      } else if (step === 13) {
+        btnBackGlobal.style.visibility = 'visible';
+        btnSkipGlobal.style.display = 'none';
+        stepIndicatorText.textContent = "Review";
+        progressBarFill.style.width = '95%';
+      } else if (step === 14) {
+        btnBackGlobal.style.visibility = 'hidden';
+        btnSkipGlobal.style.display = 'none';
+        stepIndicatorText.textContent = "Synthesizing...";
+        progressBarFill.style.width = '100%';
+      } else if (step === 15) {
+        btnBackGlobal.style.visibility = 'hidden';
+        btnSkipGlobal.style.display = 'none';
+        stepIndicatorText.textContent = "Complete 🎉";
+        progressBarFill.style.width = '100%';
+        triggerConfetti();
+      }
+    }
+
+    function showScreen(stepNumber) {
+      document.querySelectorAll('.onboarding-screen').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById(`step-${stepNumber}`);
+      if (target) {
+        target.classList.add('active');
+        onboardingState.currentStep = stepNumber;
+        updateProgressBar();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function navigateStep(direction) {
+      let nextStep = onboardingState.currentStep + direction;
+      if (nextStep < 1) nextStep = 1;
+      if (nextStep > 15) nextStep = 15;
+      showScreen(nextStep);
+    }
+
+    function jumpToStep(stepNumber) {
+      showScreen(stepNumber);
+    }
+
+    function skipCurrentStep() {
+      navigateStep(1);
+    }
+
+    // Step 2: Name Input
+    function handleNameInput(val) {
+      const trimmed = val.trim();
+      onboardingState.userName = trimmed || "Friend";
+      const display = document.getElementById('greeting-display');
+      const finalDisplay = document.getElementById('final-name-span');
+      if (display) display.textContent = `Nice to meet you, ${onboardingState.userName}!`;
+      if (finalDisplay) finalDisplay.textContent = onboardingState.userName;
+      updateSummary();
+    }
+
+    function clearNameInput() {
+      const input = document.getElementById('user-name-input');
+      if (input) {
+        input.value = '';
+        handleNameInput('');
+        input.focus();
+      }
+    }
+
+    // Step 3: Age & Gender
+    function adjustAge(delta) {
+      onboardingState.age = Math.max(14, Math.min(100, onboardingState.age + delta));
+      document.getElementById('display-age').textContent = onboardingState.age;
+      updateSummary();
+    }
+
+    function selectGender(cardEl, genderVal) {
+      document.querySelectorAll('#gender-group .gender-card').forEach(card => {
+        card.classList.remove('border-primary', 'bg-primary-light/20');
+        card.classList.add('border-slate-200');
+        const icon = card.querySelector('.material-symbols-rounded');
+        if (icon) {
+          icon.textContent = 'radio_button_unchecked';
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-slate-300');
+        }
+      });
+
+      cardEl.classList.add('border-primary', 'bg-primary-light/20');
+      cardEl.classList.remove('border-slate-200');
+      const icon = cardEl.querySelector('.material-symbols-rounded');
+      if (icon) {
+        icon.textContent = 'check_circle';
+        icon.classList.add('text-primary');
+        icon.classList.remove('text-slate-300');
+      }
+      onboardingState.gender = genderVal;
+      updateSummary();
+    }
+
+    // Step 4: Weight & Height
+    function adjustWeight(delta) {
+      onboardingState.weightKg = Math.max(35, Math.min(180, onboardingState.weightKg + delta));
+      document.getElementById('display-weight').textContent = onboardingState.weightKg;
+      document.getElementById('weight-slider').value = onboardingState.weightKg;
+      updateSummary();
+    }
+
+    function handleWeightSlider(val) {
+      onboardingState.weightKg = parseInt(val);
+      document.getElementById('display-weight').textContent = val;
+      updateSummary();
+    }
+
+    function adjustHeight(delta) {
+      onboardingState.heightCm = Math.max(120, Math.min(230, onboardingState.heightCm + delta));
+      document.getElementById('display-height').textContent = onboardingState.heightCm;
+      document.getElementById('height-slider').value = onboardingState.heightCm;
+      updateSummary();
+    }
+
+    function handleHeightSlider(val) {
+      onboardingState.heightCm = parseInt(val);
+      document.getElementById('display-height').textContent = val;
+      updateSummary();
+    }
+
+    function toggleMetricUnits(unit) {
+      onboardingState.unitSystem = unit;
+      const metricBtn = document.getElementById('unit-metric-btn');
+      const imperialBtn = document.getElementById('unit-imperial-btn');
+      const weightUnit = document.getElementById('label-weight-unit');
+      const heightUnit = document.getElementById('label-height-unit');
+      const weightVal = document.getElementById('display-weight');
+      const heightVal = document.getElementById('display-height');
+
+      if (unit === 'imperial') {
+        metricBtn.classList.remove('bg-white', 'text-primary', 'shadow-xs');
+        metricBtn.classList.add('text-charcoal-500');
+        imperialBtn.classList.add('bg-white', 'text-primary', 'shadow-xs');
+        imperialBtn.classList.remove('text-charcoal-500');
+
+        weightUnit.textContent = 'lb';
+        heightUnit.textContent = 'in';
+        weightVal.textContent = Math.round(onboardingState.weightKg * 2.20462);
+        heightVal.textContent = Math.round(onboardingState.heightCm * 0.393701);
+      } else {
+        imperialBtn.classList.remove('bg-white', 'text-primary', 'shadow-xs');
+        imperialBtn.classList.add('text-charcoal-500');
+        metricBtn.classList.add('bg-white', 'text-primary', 'shadow-xs');
+        metricBtn.classList.remove('text-charcoal-500');
+
+        weightUnit.textContent = 'kg';
+        heightUnit.textContent = 'cm';
+        weightVal.textContent = onboardingState.weightKg;
+        heightVal.textContent = onboardingState.heightCm;
+      }
+    }
+
+    // Step 5: Goal Selection
+    function selectGoal(el, goalName, emoji) {
+      document.querySelectorAll('#goal-options-group .goal-card').forEach(card => {
+        card.classList.remove('border-primary', 'bg-primary-light/20');
+        card.classList.add('border-slate-200');
+        const icon = card.querySelector('.goal-check .material-symbols-rounded');
+        if (icon) {
+          icon.textContent = 'radio_button_unchecked';
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-slate-300');
+        }
+      });
+
+      el.classList.add('border-primary', 'bg-primary-light/20');
+      el.classList.remove('border-slate-200');
+      const icon = el.querySelector('.goal-check .material-symbols-rounded');
+      if (icon) {
+        icon.textContent = 'check_circle';
+        icon.classList.add('text-primary');
+        icon.classList.remove('text-slate-300');
+      }
+
+      onboardingState.goal = goalName;
+      const feedback = document.getElementById('goal-feedback-banner');
+      if (feedback) {
+        feedback.innerHTML = `<span class="material-symbols-rounded text-base text-primary">lightbulb</span><span>Got it! We'll keep <strong>${goalName}</strong> as your core driver.</span>`;
+      }
+      updateSummary();
+    }
+
+    // Step 6: Activity Selection
+    function selectActivity(el, actName) {
+      document.querySelectorAll('#activity-group .activity-card').forEach(card => {
+        card.classList.remove('border-primary', 'bg-primary-light/20');
+        card.classList.add('border-slate-200');
+        const icon = card.querySelector('.activity-icon');
+        if (icon) {
+          icon.textContent = 'radio_button_unchecked';
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-slate-300');
+        }
+      });
+
+      el.classList.add('border-primary', 'bg-primary-light/20');
+      el.classList.remove('border-slate-200');
+      const icon = el.querySelector('.activity-icon');
+      if (icon) {
+        icon.textContent = 'check_circle';
+        icon.classList.add('text-primary');
+        icon.classList.remove('text-slate-300');
+      }
+
+      onboardingState.activity = actName;
+      updateSummary();
+    }
+
+    // Step 7: Diet Selection
+    function selectDiet(el, dietName) {
+      document.querySelectorAll('#diet-group .diet-card').forEach(card => {
+        card.classList.remove('border-primary', 'bg-primary-light/20');
+        card.classList.add('border-slate-200');
+        const icon = card.querySelector('.diet-check');
+        if (icon) {
+          icon.textContent = 'radio_button_unchecked';
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-slate-300');
+        }
+      });
+
+      el.classList.add('border-primary', 'bg-primary-light/20');
+      el.classList.remove('border-slate-200');
+      const icon = el.querySelector('.diet-check');
+      if (icon) {
+        icon.textContent = 'check_circle';
+        icon.classList.add('text-primary');
+        icon.classList.remove('text-slate-300');
+      }
+
+      onboardingState.diet = dietName;
+      updateSummary();
+    }
+
+    // Step 8: Chips & Allergies
+    function toggleChip(btn) {
+      if (btn.classList.contains('bg-primary')) {
+        btn.classList.remove('bg-primary', 'text-white', 'border-primary', 'font-bold');
+        btn.classList.add('bg-white', 'text-charcoal-700', 'border-slate-200', 'font-medium');
+      } else {
+        btn.classList.add('bg-primary', 'text-white', 'border-primary', 'font-bold');
+        btn.classList.remove('bg-white', 'text-charcoal-700', 'border-slate-200', 'font-medium');
+      }
+    }
+
+    function addAllergyTag() {
+      const input = document.getElementById('allergy-input');
+      const container = document.getElementById('allergy-tags-container');
+      const val = input.value.trim();
+      if (!val) return;
+
+      const tag = document.createElement('span');
+      tag.className = 'inline-flex items-center gap-1 bg-red-50 text-red-700 border border-red-200 text-xs px-2.5 py-1 rounded-full font-medium';
+      tag.innerHTML = `${val} <button onclick="this.parentElement.remove()" class="hover:text-red-900"><span class="material-symbols-rounded text-sm">close</span></button>`;
+      container.appendChild(tag);
+      input.value = '';
+    }
+
+    // Step 9: Schedule
+    function selectTimeWindow(btn, windowName) {
+      document.querySelectorAll('#time-window-group .window-btn').forEach(b => {
+        b.classList.remove('bg-primary', 'text-white', 'border-primary');
+        b.classList.add('bg-white', 'text-charcoal-700', 'border-slate-200');
+      });
+      btn.classList.add('bg-primary', 'text-white', 'border-primary');
+      btn.classList.remove('bg-white', 'text-charcoal-700', 'border-slate-200');
+      onboardingState.routine.workoutWindow = windowName;
+      updateSummary();
+    }
+
+    function selectDuration(btn, dur) {
+      document.querySelectorAll('#duration-group .dur-btn').forEach(b => {
+        b.classList.remove('bg-primary', 'text-white', 'border-primary');
+        b.classList.add('bg-white', 'text-charcoal-700', 'border-slate-200');
+      });
+      btn.classList.add('bg-primary', 'text-white', 'border-primary');
+      btn.classList.remove('bg-white', 'text-charcoal-700', 'border-slate-200');
+      onboardingState.routine.duration = dur;
+      updateSummary();
+    }
+
+    // Step 10: Disciplines & Equipment
+    function toggleMoveCard(btn) {
+      btn.classList.toggle('border-primary');
+      btn.classList.toggle('bg-primary-light/20');
+      btn.classList.toggle('border-slate-200');
+    }
+
+    function toggleEquipment(btn) {
+      btn.classList.toggle('border-primary');
+      btn.classList.toggle('bg-primary-light/20');
+      btn.classList.toggle('border-slate-200');
+      const icon = btn.querySelector('.material-symbols-rounded');
+      if (icon) {
+        if (icon.textContent === 'check') {
+          icon.textContent = 'add';
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-slate-300');
+        } else {
+          icon.textContent = 'check';
+          icon.classList.add('text-primary');
+          icon.classList.remove('text-slate-300');
+        }
+      }
+    }
+
+    // Step 12: Tone
+    function selectTone(card, toneVal) {
+      document.querySelectorAll('#tone-group .tone-card').forEach(c => {
+        c.classList.remove('border-primary', 'bg-primary-light/20');
+        c.classList.add('border-slate-200');
+      });
+      card.classList.add('border-primary', 'bg-primary-light/20');
+      card.classList.remove('border-slate-200');
+      onboardingState.tone = toneVal;
+      updateSummary();
+    }
+
+    // Step 13 Summary Updates
+    function updateSummary() {
+      const summaryIdentity = document.getElementById('summary-identity');
+      const summaryGoal = document.getElementById('summary-goal');
+      const summaryActivity = document.getElementById('summary-activity');
+      const finalGoalSpan = document.getElementById('final-goal-span');
+
+      if (summaryIdentity) {
+        summaryIdentity.textContent = `${onboardingState.userName} • ${onboardingState.age} yrs • ${onboardingState.heightCm} cm • ${onboardingState.weightKg} kg`;
+      }
+      if (summaryGoal) {
+        summaryGoal.textContent = onboardingState.goal;
+      }
+      if (summaryActivity) {
+        summaryActivity.textContent = onboardingState.activity;
+      }
+      if (finalGoalSpan) {
+        finalGoalSpan.textContent = `${onboardingState.goal} (${onboardingState.weightKg} kg baseline)`;
+      }
+    }
+
+    // Step 14 AI Synthesis Sequence
+    function startSynthesisAnimation() {
+      showScreen(14);
+      setTimeout(() => {
+        const step3 = document.getElementById('synthesis-step-3');
+        const spinner = document.getElementById('spinner-fit');
+        if (spinner) {
+          spinner.classList.remove('animate-spin');
+          spinner.textContent = 'check_circle';
+          spinner.classList.remove('text-primary');
+          spinner.classList.add('text-emerald-500');
+        }
+      }, 900);
+
+      setTimeout(() => {
+        const step4 = document.getElementById('synthesis-step-4');
+        if (step4) {
+          step4.classList.remove('bg-white/60');
+          step4.classList.add('bg-white', 'shadow-2xs');
+          const icon = step4.querySelector('.material-symbols-rounded');
+          const text = step4.querySelector('span:last-child');
+          if (icon) {
+            icon.textContent = 'check_circle';
+            icon.classList.remove('text-slate-300');
+            icon.classList.add('text-emerald-500');
+          }
+          if (text) {
+            text.classList.remove('text-charcoal-400');
+            text.classList.add('text-charcoal-900');
+          }
+        }
+      }, 1600);
+
+      setTimeout(() => {
+        showScreen(15);
+      }, 2200);
+    }
+
+    // Confetti Effect
+    function triggerConfetti() {
+      const container = document.getElementById('confetti-container');
+      if (!container) return;
+      container.innerHTML = '';
+      const colors = ['#0f766e', '#14b8a6', '#3b82f6', '#10b981', '#f59e0b', '#ec4899'];
+      for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.floor(Math.random() * 8) + 6;
+        p.style.width = `${size}px`;
+        p.style.height = `${size * 0.7}px`;
+        p.style.backgroundColor = color;
+        p.style.left = `${Math.random() * 100}%`;
+        p.style.top = `${Math.random() * 20}%`;
+        p.style.animationDelay = `${Math.random() * 0.5}s`;
+        p.style.animationDuration = `${1.8 + Math.random() * 1.2}s`;
+        container.appendChild(p);
+      }
+    }
+
+    function launchDashboardNotification() {
+      alert("✨ Success! You're now configured with BealthAI. Redirecting to your personal Dashboard...");
+    }
+
+    // Init state
+    document.addEventListener('DOMContentLoaded', () => {
+      updateProgressBar();
+      updateSummary();
+    });
+  </script>
+
+
+
+</body></html>
